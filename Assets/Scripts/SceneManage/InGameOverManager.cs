@@ -54,6 +54,14 @@ public class InGameOverManager : MonoBehaviour
 
             xButtonWasPressed = xButtonPressed;
         }
+        
+        if (!Player.instance.inputOptionIsSwitchController)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                ToggleObjects();
+            }
+        }
     }
 
     public void ToggleObjects()

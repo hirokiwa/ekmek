@@ -63,6 +63,5 @@ public class TilemapReseter : MonoBehaviour
             }
         }
 
-        Debug.Log("All Tiles Reset");
     }
 }

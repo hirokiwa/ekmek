@@ -26,7 +26,6 @@ public class Start_Point : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log(other.gameObject.name);
 
         if (other.gameObject.CompareTag("Enemy"))
         {
@@ -67,13 +66,9 @@ public class Start_Point : MonoBehaviour
                     Tracking_gusta.instance.pause = false;
                     Tracking_gusta.instance.flag_g = true;
                 }
-
-
-
+                
             }
             
-
-
         }
     }
 }

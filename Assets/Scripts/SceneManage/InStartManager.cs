@@ -23,17 +23,18 @@ public class InStartManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 0;
+        
         var m_joycons = JoyconManager.Instance.j;
         if ( m_joycons == null || m_joycons.Count <= 0 ) return;
 
         m_joyconR = m_joycons.Find( c => !c.isLeft );
         xButtonWasPressed = false;
-
-        Time.timeScale = 0;
     }
 
     private void Update()
     {
+        // joycon接続時に呼ばれる処理
         if (m_joyconR != null)
         {
             bool xButtonPressed = m_joyconR.GetButton(Joycon.Button.DPAD_UP);
@@ -46,6 +47,15 @@ public class InStartManager : MonoBehaviour
             }
 
             xButtonWasPressed = xButtonPressed;
+        }
+
+        if (!Player.instance.inputOptionIsSwitchController)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Time.timeScale = 1; 
+                ToggleObjects();
+            }
         }
     }
 

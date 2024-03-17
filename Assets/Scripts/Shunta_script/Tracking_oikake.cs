@@ -217,10 +217,7 @@ public class Tracking_oikake : MonoBehaviour
 
                 gameObject.layer = LayerMask.NameToLayer("Return");
                 pause = true;
-
             }
-            
-            
         }
     }
 

@@ -27,7 +27,6 @@ public class Player : MonoBehaviour
     public static Player instance;
     public int v;
 
-
     public NavMeshAgent enemy1;
     public NavMeshAgent enemy2;
     public NavMeshAgent enemy3;
@@ -47,12 +46,16 @@ public class Player : MonoBehaviour
     
     public Tilemap food_tilemap;
 
+    public bool inputOptionIsSwitchController;
+
     public void Awake()
     {
         if (instance == null)
         {
             instance = this;
         }
+        
+        remainCount = 2;
     }
 
     void Start()
@@ -64,7 +67,7 @@ public class Player : MonoBehaviour
         m_joyconR = m_joycons.Find( c => !c.isLeft );
         
         anim = GetComponent<Animator>();
-        remainCount = 2;
+        
 
         rigidbody2D = GetComponent<Rigidbody2D>();
     }
@@ -73,91 +76,90 @@ public class Player : MonoBehaviour
     {
         if (!Management.instance.stop)
         {
+            if (inputOptionIsSwitchController)
+            {
+                //Joy-Con用
+                if (m_joyconR.GetButtonDown(m_buttons[2]))
+                {
+                    // Yボタン（x軸負の方向）
+                    directionVector = new Vector2(-1f, 0);
+                    anim.SetBool("isRun", true);
             
+                    v = 0;
+                }
+                else if (m_joyconR.GetButtonDown(m_buttons[1]))
+                {
+                    // Aボタン（x軸正の方向）
+                    directionVector = new Vector2(1f, 0);
+                    anim.SetBool("isRun", true);
+            
+                    v = 1;
+                }
+                else if (m_joyconR.GetButtonDown(m_buttons[3]))
+                {
+                    // Xボタン（y軸正の方向）
+                    directionVector = new Vector2(0, 1f);
+                    anim.SetBool("isRun", true);
+            
+                    v = 2;
+                }
+                else if (m_joyconR.GetButtonDown(m_buttons[0]))
+                {
+                    // Bボタン（y軸負の方向）
+                    directionVector = new Vector2(0, -1f);
+                    anim.SetBool("isRun", true);
+            
+                    v = 3;
+                }else
+                {
+                    anim.SetBool("isRun", false);
+                }
+            
+                rigidbody2D.velocity = new Vector2(AccelerationFilter.instance.last_accel_value, AccelerationFilter.instance.last_accel_value)
+                                       * directionVector * magnificationVec;
+            }
+            else
+            {
+                Vector2 position = transform.position;
+                
+                if (Input.GetKey("left"))
+                {
+                    position.x -= speed;
+                    // anim.SetBool("isRun", true);
+                
+                    v = 0;
+                }
+                else if (Input.GetKey("right"))
+                {
+                    position.x += speed;
+                    // anim.SetBool("isRun", true);
+                
+                    v = 1;
+                }
+                else if (Input.GetKey("up"))
+                {
+                    position.y += speed;
+                    // anim.SetBool("isRun", true);
+                
+                    v = 2;
+                }
+                else if (Input.GetKey("down"))
+                {
+                    position.y -= speed;
+                    // anim.SetBool("isRun", true);
+                
+                    v = 3;
+                }
+                else
+                {
+                    // rigidbody2D.velocity = new Vector2(0, 0);
+                    // anim.SetBool("isRun", false);
+                }
+                
+                transform.position = position;
+            }
 
-            //Joy-Con用
-            if (m_joyconR.GetButtonDown(m_buttons[2]))
-            {
-                // Yボタン（x軸負の方向）
-                directionVector = new Vector2(-1f, 0);
-                anim.SetBool("isRun", true);
-            
-                v = 0;
-            }
-            else if (m_joyconR.GetButtonDown(m_buttons[1]))
-            {
-                // Aボタン（x軸正の方向）
-                directionVector = new Vector2(1f, 0);
-                anim.SetBool("isRun", true);
-            
-                v = 1;
-            }
-            else if (m_joyconR.GetButtonDown(m_buttons[3]))
-            {
-                // Xボタン（y軸正の方向）
-                directionVector = new Vector2(0, 1f);
-                anim.SetBool("isRun", true);
-            
-                v = 2;
-            }
-            else if (m_joyconR.GetButtonDown(m_buttons[0]))
-            {
-                // Bボタン（y軸負の方向）
-                directionVector = new Vector2(0, -1f);
-                anim.SetBool("isRun", true);
-            
-                v = 3;
-            }else
-            {
-                // anim.SetBool("isRun", false);
-            }
-            
-            rigidbody2D.velocity = new Vector2(AccelerationFilter.instance.last_accel_value, AccelerationFilter.instance.last_accel_value)
-                                    * directionVector * magnificationVec;
-
-            
-                // Vector2 position = transform.position;
-                //
-                // if (Input.GetKey("left"))
-                // {
-                //     position.x -= speed;
-                //     // anim.SetBool("isRun", true);
-                //
-                //     v = 0;
-                // }
-                // else if (Input.GetKey("right"))
-                // {
-                //     position.x += speed;
-                //     // anim.SetBool("isRun", true);
-                //
-                //     v = 1;
-                // }
-                // else if (Input.GetKey("up"))
-                // {
-                //     position.y += speed;
-                //     // anim.SetBool("isRun", true);
-                //
-                //     v = 2;
-                // }
-                // else if (Input.GetKey("down"))
-                // {
-                //     position.y -= speed;
-                //     // anim.SetBool("isRun", true);
-                //
-                //     v = 3;
-                // }
-                // else
-                // {
-                //     // anim.SetBool("isRun", false);
-                // }
-                //
-                // transform.position = position;
-            
-        }
-        else {
-            rigidbody2D.velocity = new Vector2(0, 0);
-
-        }
+        } 
 
     }
 
@@ -170,11 +172,9 @@ public class Player : MonoBehaviour
                 // ここに残り残機数を減らす処理を発火させる
                 remainCount -= 1; 
                 RemainingNumber.text = "✖️ " + remainCount.ToString();
-
-
+                
                 StartCoroutine(Management.instance.Restart(enemy1, enemy2, enemy3, me));
-                
-                
+
                 // GameOverUIの表示もここで行う
                 if (remainCount < 0)
                 {
@@ -186,20 +186,27 @@ public class Player : MonoBehaviour
 
     void GameOver()
     {
+        
         ScoreCountSystem.instance.ScoreReset();
         remainCount = 2;
         RemainingNumber.text = "✖️ " + remainCount.ToString();
         gameOverUI.SetActive(true);
-        var sequence = DOTween.Sequence(); //Sequence生成
         
-        sequence.Append(DOVirtual.DelayedCall(2, () => TilemapReseter.instance.ResetTiles()))
-            .Join(DOVirtual.DelayedCall(3, () =>Time.timeScale = 0))
-            .Join(DOVirtual.DelayedCall(3, () =>this.transform.position = new Vector2(0f, -16.0f)))
-            .Join(DOVirtual.DelayedCall(2, () =>food_tilemap.gameObject.SetActive(false)))
-            .Join(DOVirtual.DelayedCall(3, () =>food_tilemap.gameObject.SetActive(true)))
-            .Join(DOVirtual.DelayedCall(2, () => gameOverUI.SetActive(false)))
-            .Join(DOVirtual.DelayedCall(2, () => UICanvas.SetActive(false)))
-            .Join(DOVirtual.DelayedCall(2, () => StartUI.SetActive(true)));
+        DOVirtual.DelayedCall(3, () => SceneManager.LoadScene("Main 1"));
+
+        
+        //
+        // var sequence = DOTween.Sequence(); //Sequence生成
+        //
+        // sequence.Append(DOVirtual.DelayedCall(2, () => TilemapReseter.instance.ResetTiles()))
+        //     .Join(DOVirtual.DelayedCall(3, () =>Time.timeScale = 0))
+        //     .Join(DOVirtual.DelayedCall(3, () =>this.transform.position = new Vector2(0f, -16.0f)))
+        //     .Join(DOVirtual.DelayedCall(2, () =>food_tilemap.gameObject.SetActive(false)))
+        //     .Join(DOVirtual.DelayedCall(3, () =>food_tilemap.gameObject.SetActive(true)))
+        //     .Join(DOVirtual.DelayedCall(2, () => gameOverUI.SetActive(false)))
+        //     .Join(DOVirtual.DelayedCall(2, () => UICanvas.SetActive(false)))
+        //     .Join(DOVirtual.DelayedCall(2, () => StartUI.SetActive(true)));
+            
     }
 
 }
