@@ -34,6 +34,7 @@ public class InStartManager : MonoBehaviour
 
     private void Update()
     {
+        // joycon接続時に呼ばれる処理
         if (m_joyconR != null)
         {
             bool xButtonPressed = m_joyconR.GetButton(Joycon.Button.DPAD_UP);
@@ -46,6 +47,15 @@ public class InStartManager : MonoBehaviour
             }
 
             xButtonWasPressed = xButtonPressed;
+        }
+
+        if (!Player.instance.inputOptionIsSwitchController)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Time.timeScale = 1; 
+                ToggleObjects();
+            }
         }
     }
 

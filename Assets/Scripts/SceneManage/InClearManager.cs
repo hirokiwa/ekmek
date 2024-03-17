@@ -44,6 +44,14 @@ public class InClearManager : MonoBehaviour
 
             xButtonWasPressed = xButtonPressed;
         }
+        
+        if (!Player.instance.inputOptionIsSwitchController)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                ToggleObjects();
+            }
+        }
     }
 
     private void ToggleObjects()
