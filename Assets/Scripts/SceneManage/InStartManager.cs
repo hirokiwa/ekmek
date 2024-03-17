@@ -23,13 +23,13 @@ public class InStartManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 0;
+        
         var m_joycons = JoyconManager.Instance.j;
         if ( m_joycons == null || m_joycons.Count <= 0 ) return;
 
         m_joyconR = m_joycons.Find( c => !c.isLeft );
         xButtonWasPressed = false;
-
-        Time.timeScale = 0;
     }
 
     private void Update()

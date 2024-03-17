@@ -64,13 +64,12 @@ public class AccelerationFilter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        DetectNewStep(JoyConUpdate()); // ここで関数を呼び出す
-        // DrawGraph
-        //     .Add( "last_accel_value", last_accel_value )
-        //     .SetColor( Color.yellow )
-        //     ;
+        if (Player.instance.inputOptionIsSwitchController)
+        {
+            DetectNewStep(JoyConUpdate()); // ここで関数を呼び出す
+        }
         
-        
+       
         //Joyconの動作チェック
         //1→A
         //0→B
