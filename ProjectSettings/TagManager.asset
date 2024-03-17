@@ -3,15 +3,18 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - PowerEsa
+  - Enemy
+  - Esa
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Return
   - Water
   - UI
-  - 
+  - Enemy
   - 
   - 
   - 
