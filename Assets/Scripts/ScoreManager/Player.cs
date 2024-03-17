@@ -33,8 +33,8 @@ public class Player : MonoBehaviour
     public GameObject me;
 
     private Vector2 w_pos;
-    private Animator anim;
-    
+    [SerializeField] private Animator anim;
+
     private int remainCount;
     [SerializeField] private Text RemainingNumber;
     [SerializeField] private GameObject gameOverUI;
@@ -60,16 +60,15 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        anim = GetComponent<Animator>();
+        rigidbody2D = GetComponent<Rigidbody2D>();
+        
         var m_joycons = JoyconManager.Instance.j;
         if ( m_joycons == null || m_joycons.Count <= 0 ) return;
 
         m_joyconL = m_joycons.Find( c =>  c.isLeft );
         m_joyconR = m_joycons.Find( c => !c.isLeft );
-        
-        anim = GetComponent<Animator>();
-        
 
-        rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
     void Update()
@@ -125,35 +124,35 @@ public class Player : MonoBehaviour
                 if (Input.GetKey("left"))
                 {
                     position.x -= speed;
-                    // anim.SetBool("isRun", true);
+                    anim.SetBool("isRun", true);
                 
                     v = 0;
                 }
                 else if (Input.GetKey("right"))
                 {
                     position.x += speed;
-                    // anim.SetBool("isRun", true);
+                    anim.SetBool("isRun", true);
                 
                     v = 1;
                 }
                 else if (Input.GetKey("up"))
                 {
                     position.y += speed;
-                    // anim.SetBool("isRun", true);
+                    anim.SetBool("isRun", true);
                 
                     v = 2;
                 }
                 else if (Input.GetKey("down"))
                 {
                     position.y -= speed;
-                    // anim.SetBool("isRun", true);
+                    anim.SetBool("isRun", true);
                 
                     v = 3;
                 }
                 else
                 {
                     // rigidbody2D.velocity = new Vector2(0, 0);
-                    // anim.SetBool("isRun", false);
+                    anim.SetBool("isRun", false);
                 }
                 
                 transform.position = position;
@@ -192,7 +191,7 @@ public class Player : MonoBehaviour
         RemainingNumber.text = "✖️ " + remainCount.ToString();
         gameOverUI.SetActive(true);
         
-        DOVirtual.DelayedCall(3, () => SceneManager.LoadScene("Main 1"));
+        DOVirtual.DelayedCall(3, () => SceneManager.LoadScene("Main"));
 
         
         //

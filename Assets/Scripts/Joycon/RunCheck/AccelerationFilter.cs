@@ -84,7 +84,6 @@ public class AccelerationFilter : MonoBehaviour
         Vector3 filteredAccelValue = FilterAccelValue(true, accel);
         var current_accel_value = filteredAccelValue.magnitude;
         return current_accel_value;
-        
     }
     
     Vector3 FilterAccelValue(bool smooth, Vector3 accVal)
