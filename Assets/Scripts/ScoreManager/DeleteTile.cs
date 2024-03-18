@@ -6,11 +6,13 @@ using UnityEngine.Tilemaps;
 public class DeleteTile : MonoBehaviour
 {
     public AudioClip PakuSound;
-    public AudioClip BakuSound;
+    // public AudioClip BakuSound;
     public AudioClip PiyoSound;
     AudioSource audioSource1;
-    [SerializeField] private AudioSource audioSource2;
+    // [SerializeField] private AudioSource audioSource2;
     [SerializeField] private AudioSource audioSource3;
+
+    [SerializeField] private ScoreCountSystem scoreSystem;
 
     private void Start()
     {
@@ -64,8 +66,7 @@ public class DeleteTile : MonoBehaviour
                 tileCol.enabled = false;
                 tileCol.enabled = true;
 
-                // スコアを更新する処理を追加
-                ScoreCountSystem scoreSystem = FindObjectOfType<ScoreCountSystem>();
+                // スコアを更新する処理を追加x`
                 if(scoreSystem != null)
                 {
                     scoreSystem.AddScore(100); 
@@ -79,7 +80,7 @@ public class DeleteTile : MonoBehaviour
         }
         else if (ot.gameObject.tag == "PowerEsa")
         {
-            audioSource2.PlayOneShot(BakuSound);
+            // audioSource2.PlayOneShot(BakuSound);
             audioSource3.PlayOneShot(PiyoSound);
 
             Management.instance.power = true;

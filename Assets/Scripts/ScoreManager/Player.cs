@@ -47,6 +47,9 @@ public class Player : MonoBehaviour
     public Tilemap food_tilemap;
 
     public bool inputOptionIsSwitchController;
+    
+    public AudioClip howasound;
+    AudioSource audioSource;
 
     public void Awake()
     {

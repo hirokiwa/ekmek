@@ -45,10 +45,12 @@ public class Management : MonoBehaviour
 
             if (timer >= powerTime)
             {
+                ScoreCountSystem.instance.ResetConsecutiveEatenEnemies();
+                
                 timer = 0.0f;
                 pub_timer = 0.0f;
                 powerTime = 0.0f;
-
+                
                 Tracking_oikake.instance.power_o = false;
                 Tracking_pinky.instance.power_p = false;
                 Tracking_gusta.instance.power_g = false;
