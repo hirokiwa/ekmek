@@ -122,5 +122,7 @@ public class JoyconManager : MonoBehaviour
         {
             j[i].Detach();
         }
+
+        HIDapi.hid_exit();
     }
 }
