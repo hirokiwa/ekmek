@@ -11,6 +11,7 @@ public class ScoreCountSystem : MonoBehaviour
     private int highScore; // ハイスコア
 
     public static ScoreCountSystem instance;
+    private int consecutiveEatenEnemies = 0; // 連続して食べた敵の数
 
     private void Awake()
     {
@@ -42,6 +43,24 @@ public class ScoreCountSystem : MonoBehaviour
             PlayerPrefs.SetInt("HighScore", highScore); // 新しいハイスコアを保存
             UpdateHighScoreText(); // ハイスコアテキストを更新
         }
+    }
+
+    public void AddScorePowerEsa()
+    {
+        int[] scores = new int[] { 400, 800, 1600 }; // 加算するスコアの配列
+        if (consecutiveEatenEnemies >= scores.Length)
+        {
+            consecutiveEatenEnemies = scores.Length - 1; // 配列の最大インデックスを超えないようにする
+        }
+
+        int scoreToAdd = scores[consecutiveEatenEnemies]; // 加算するスコアを決定
+        AddScore(scoreToAdd); // スコアを加算
+        consecutiveEatenEnemies++; // 連続して食べた敵の数を増加
+    }
+    
+    public void ResetConsecutiveEatenEnemies()
+    {
+        consecutiveEatenEnemies = 0; // 連続して食べた敵の数をリセット
     }
 
     // スコアテキストを更新するメソッド
