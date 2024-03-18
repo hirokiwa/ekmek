@@ -8,7 +8,7 @@ public class CalorieManager : MonoBehaviour
   public Text JoyConScoreNumber;
 
   private float Acceleration;
-  private float JconScore;
+  private float JoyConScore;
 
   public static CalorieManager instance;
 
@@ -32,12 +32,12 @@ public class CalorieManager : MonoBehaviour
   void CountUpJoyConScore()
   {
     float additionalScore = Acceleration > ACCELERATION_THRESHOLD ? Acceleration : 0;
-    updateScore(JconScore + additionalScore);
+    updateScore(JoyConScore + additionalScore);
   }
 
   private void updateScore(float input)
   {
-    setJsonScore(input);
+    setJoyConScore(input);
     setJoyConScoreNumber(input.ToString());
   }
 
@@ -46,9 +46,9 @@ public class CalorieManager : MonoBehaviour
     Acceleration = input;
   }
 
-  private void setJsonScore(float input)
+  private void setJoyConScore(float input)
   {
-    JconScore = input;
+    JoyConScore = input;
   }
 
   private void setJoyConScoreNumber(string input)
