@@ -49,7 +49,7 @@ public class Player : MonoBehaviour
     public bool inputOptionIsSwitchController;
 
     // Whether the game stage is in play
-    public static bool isGameRunning;
+    public bool isGameRunning;
 
     public void Awake()
     {
@@ -208,7 +208,7 @@ public class Player : MonoBehaviour
             
     }
 
-    public static void setIsGameRunning(bool input) {
+    public void setIsGameRunning(bool input) {
         isGameRunning = input;
     }
 
