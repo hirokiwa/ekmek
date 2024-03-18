@@ -54422,12 +54422,13 @@ MonoBehaviour:
   enemy2: {fileID: 538091543}
   enemy3: {fileID: 1745004938}
   me: {fileID: 955674087}
+  anim: {fileID: 0}
   RemainingNumber: {fileID: 167819454}
   gameOverUI: {fileID: 1513558030}
   StartUI: {fileID: 1727460848}
   UICanvas: {fileID: 1322450416}
   food_tilemap: {fileID: 827719283}
-  inputOptionIsSwitchController: 0
+  inputOptionIsSwitchController: 1
 --- !u!212 &955674089
 SpriteRenderer:
   m_ObjectHideFlags: 0

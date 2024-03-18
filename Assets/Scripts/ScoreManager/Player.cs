@@ -82,7 +82,6 @@ public class Player : MonoBehaviour
                 {
                     // Yボタン（x軸負の方向）
                     directionVector = new Vector2(-1f, 0);
-                    anim.SetBool("isRun", true);
             
                     v = 0;
                 }
@@ -90,7 +89,6 @@ public class Player : MonoBehaviour
                 {
                     // Aボタン（x軸正の方向）
                     directionVector = new Vector2(1f, 0);
-                    anim.SetBool("isRun", true);
             
                     v = 1;
                 }
@@ -98,7 +96,6 @@ public class Player : MonoBehaviour
                 {
                     // Xボタン（y軸正の方向）
                     directionVector = new Vector2(0, 1f);
-                    anim.SetBool("isRun", true);
             
                     v = 2;
                 }
@@ -106,12 +103,11 @@ public class Player : MonoBehaviour
                 {
                     // Bボタン（y軸負の方向）
                     directionVector = new Vector2(0, -1f);
-                    anim.SetBool("isRun", true);
             
                     v = 3;
                 }else
                 {
-                    anim.SetBool("isRun", false);
+                    anim.SetBool("isRun", true);
                 }
             
                 rigidbody2D.velocity = new Vector2(AccelerationFilter.instance.last_accel_value, AccelerationFilter.instance.last_accel_value)
