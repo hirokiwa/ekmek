@@ -48,6 +48,9 @@ public class Player : MonoBehaviour
 
     public bool inputOptionIsSwitchController;
 
+    // Whether the game stage is in play
+    public bool isGameRunning;
+
     public void Awake()
     {
         if (instance == null)
@@ -202,6 +205,10 @@ public class Player : MonoBehaviour
         //     .Join(DOVirtual.DelayedCall(2, () => UICanvas.SetActive(false)))
         //     .Join(DOVirtual.DelayedCall(2, () => StartUI.SetActive(true)));
             
+    }
+
+    public void setIsGameRunning(bool input) {
+        isGameRunning = input;
     }
 
 }
