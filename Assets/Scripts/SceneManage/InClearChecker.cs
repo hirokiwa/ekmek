@@ -16,7 +16,7 @@ public class InClearChecker : MonoBehaviour
     
     [HideInInspector] public int eatenFoodCount = 0; // 食べたエサの数
     [SerializeField] private GameObject ClearCanvas;
-    [SerializeField] private GameObject Player;
+    [SerializeField] private GameObject PlayerObject;
     [SerializeField] private GameObject UICanvas;
     
 
@@ -63,7 +63,7 @@ public class InClearChecker : MonoBehaviour
 
             sequence.Append(DOVirtual.DelayedCall(2, () => TilemapReseter.instance.ResetTiles()))
                 .Join(DOVirtual.DelayedCall(3, () => Time.timeScale = 0))
-                .Join(DOVirtual.DelayedCall(2, () => Player.transform.position = new Vector2(0f, -16.0f)))
+                .Join(DOVirtual.DelayedCall(2, () => PlayerObject.transform.position = new Vector2(0f, -16.0f)))
                 .Join(DOVirtual.DelayedCall(2, () => food_tilemap.gameObject.SetActive(false)))
                 .Join(DOVirtual.DelayedCall(2, () => UICanvas.gameObject.SetActive(false)))
                 .Join(DOVirtual.DelayedCall(3, () => food_tilemap.gameObject.SetActive(true)));
