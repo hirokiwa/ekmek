@@ -54428,7 +54428,7 @@ MonoBehaviour:
   StartUI: {fileID: 1727460848}
   UICanvas: {fileID: 1322450416}
   food_tilemap: {fileID: 827719283}
-  inputOptionIsSwitchController: 0
+  inputOptionIsSwitchController: 1
 --- !u!212 &955674089
 SpriteRenderer:
   m_ObjectHideFlags: 0

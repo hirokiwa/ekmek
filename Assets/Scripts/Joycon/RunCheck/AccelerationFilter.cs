@@ -68,12 +68,12 @@ public class AccelerationFilter : MonoBehaviour
         {
             DetectNewStep(JoyConUpdate()); // ここで関数を呼び出す
         }
-        DrawGraph
-            .Add( "last_accel_value", last_accel_value )
-            .SetColor( Color.yellow )
-            .SetLineWidth( 2 )
-            .SetGraphHeight( 30 )
-            ;
+        // DrawGraph
+        //     .Add( "last_accel_value", last_accel_value )
+        //     .SetColor( Color.yellow )
+        //     .SetLineWidth( 2 )
+        //     .SetGraphHeight( 30 )
+        //     ;
        
         //Joyconの動作チェックx
         //1→A
