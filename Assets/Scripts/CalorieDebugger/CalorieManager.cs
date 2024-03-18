@@ -15,7 +15,9 @@ public class CalorieManager : MonoBehaviour
     Debug.Log(AccelerationFilter.instance.last_accel_value);
 
     setAcceleration(AccelerationFilter.instance?.last_accel_value ?? 0);
-    CountUpJoyConScore();
+    if(Player.instance.isGameRunning){
+      CountUpJoyConScore();
+    }
   }
 
   void CountUpJoyConScore()

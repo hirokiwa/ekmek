@@ -189,6 +189,7 @@ public class Player : MonoBehaviour
         remainCount = 2;
         RemainingNumber.text = "✖️ " + remainCount.ToString();
         gameOverUI.SetActive(true);
+        setIsGameRunning(false);
         
         DOVirtual.DelayedCall(3, () => SceneManager.LoadScene("Main"));
 
