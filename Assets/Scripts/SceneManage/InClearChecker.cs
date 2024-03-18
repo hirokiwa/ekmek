@@ -59,6 +59,8 @@ public class InClearChecker : MonoBehaviour
             ScoreCountSystem.instance.ScoreReset();
             var sequence = DOTween.Sequence(); //Sequence生成
 
+            DOVirtual.DelayedCall(3, () => SceneManager.LoadScene("Main"));
+
             sequence.Append(DOVirtual.DelayedCall(2, () => TilemapReseter.instance.ResetTiles()))
                 .Join(DOVirtual.DelayedCall(3, () => Time.timeScale = 0))
                 .Join(DOVirtual.DelayedCall(2, () => Player.transform.position = new Vector2(0f, -16.0f)))

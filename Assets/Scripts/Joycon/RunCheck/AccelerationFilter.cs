@@ -64,14 +64,18 @@ public class AccelerationFilter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        DetectNewStep(JoyConUpdate()); // ここで関数を呼び出す
+        if (Player.instance.inputOptionIsSwitchController)
+        {
+            DetectNewStep(JoyConUpdate()); // ここで関数を呼び出す
+        }
         // DrawGraph
         //     .Add( "last_accel_value", last_accel_value )
         //     .SetColor( Color.yellow )
+        //     .SetLineWidth( 2 )
+        //     .SetGraphHeight( 30 )
         //     ;
-        
-        
-        //Joyconの動作チェック
+       
+        //Joyconの動作チェックx
         //1→A
         //0→B
         //2→Y
@@ -85,7 +89,6 @@ public class AccelerationFilter : MonoBehaviour
         Vector3 filteredAccelValue = FilterAccelValue(true, accel);
         var current_accel_value = filteredAccelValue.magnitude;
         return current_accel_value;
-        
     }
     
     Vector3 FilterAccelValue(bool smooth, Vector3 accVal)

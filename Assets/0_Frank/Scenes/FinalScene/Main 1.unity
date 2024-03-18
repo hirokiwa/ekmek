@@ -47966,7 +47966,7 @@ GameObject:
   - component: {fileID: 538091547}
   - component: {fileID: 538091548}
   - component: {fileID: 538091549}
-  m_Layer: 10
+  m_Layer: 6
   m_Name: pinky
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -54422,7 +54422,7 @@ MonoBehaviour:
   enemy2: {fileID: 538091543}
   enemy3: {fileID: 1745004938}
   me: {fileID: 955674087}
-  anim: {fileID: 0}
+  anim: {fileID: 955674093}
   RemainingNumber: {fileID: 167819454}
   gameOverUI: {fileID: 1513558030}
   StartUI: {fileID: 1727460848}
@@ -57623,7 +57623,7 @@ GameObject:
   - component: {fileID: 1442931549}
   - component: {fileID: 1442931550}
   - component: {fileID: 1442931551}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: oikake
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -101608,7 +101608,7 @@ GameObject:
   - component: {fileID: 1745004936}
   - component: {fileID: 1745004935}
   - component: {fileID: 1745004942}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: gusta
   m_TagString: Enemy
   m_Icon: {fileID: 0}
