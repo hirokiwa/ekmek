@@ -57,4 +57,8 @@ public class CalorieManager : MonoBehaviour
     updateCalorieKCal(calculatedCalorieKCal);
   }
 
+  public float getCalorieKCal() {
+    return CalorieKCal;
+  }
+
 }
