@@ -5,10 +5,10 @@ public class DistanceManager : MonoBehaviour
 {
   private const float ACCELERATION_THRESHOLD = 2;
 
-  public Text JoyConScoreNumber;
+  public Text DistanceNumber;
 
   private float Acceleration;
-  private float JoyConScore;
+  private float Distance;
 
   public static DistanceManager instance;
 
@@ -25,20 +25,20 @@ public class DistanceManager : MonoBehaviour
 
     setAcceleration(AccelerationFilter.instance?.last_accel_value ?? 0);
     if(Player.instance.isGameRunning){
-      CountUpJoyConScore();
+      CountUpDistance();
     }
   }
 
-  void CountUpJoyConScore()
+  void CountUpDistance()
   {
     float additionalScore = Acceleration > ACCELERATION_THRESHOLD ? Acceleration : 0;
-    updateScore(JoyConScore + additionalScore);
+    updateDistance(Distance + additionalScore);
   }
 
-  private void updateScore(float input)
+  private void updateDistance(float input)
   {
-    setJoyConScore(input);
-    setJoyConScoreNumber(input.ToString());
+    setDistance(input);
+    setDistanceNumber(input.ToString());
   }
 
   private void setAcceleration(float input)
@@ -46,18 +46,22 @@ public class DistanceManager : MonoBehaviour
     Acceleration = input;
   }
 
-  private void setJoyConScore(float input)
+  private void setDistance(float input)
   {
-    JoyConScore = input;
+    Distance = input;
   }
 
-  private void setJoyConScoreNumber(string input)
+  private void setDistanceNumber(string input)
   {
-    JoyConScoreNumber.text = input;
+    DistanceNumber.text = input;
   }
 
-  public void resetCalorieScore() {
-    updateScore(0);
+  public void resetDistance() {
+    updateDistance(0);
+  }
+
+  public float getDistance() {
+    return Distance;
   }
 
 }

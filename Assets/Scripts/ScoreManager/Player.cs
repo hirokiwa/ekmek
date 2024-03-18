@@ -213,7 +213,7 @@ public class Player : MonoBehaviour
 
     public void setIsGameRunning(bool input) {
         if(!isGameRunning & input){
-            CalorieManager.instance.resetCalorieScore();
+            DistanceManager.instance.resetDistance();
         }
         isGameRunning = input;
     }
