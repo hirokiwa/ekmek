@@ -16,6 +16,8 @@ public class InClearChecker : MonoBehaviour
     
     [HideInInspector] public int eatenFoodCount = 0; // 食べたエサの数
     [SerializeField] private GameObject ClearCanvas;
+    [SerializeField] private GameObject PlayerObject;
+    [SerializeField] private GameObject UICanvas;
     
     public static InClearChecker instance;
 
@@ -52,6 +54,7 @@ public class InClearChecker : MonoBehaviour
         if (eatenFoodCount >= totalFoodCount)
         {
             ClearCanvas.SetActive(true);
+            Player.instance.setIsGameRunning(false);
             eatenFoodCount = 0;
             ScoreCountSystem.instance.ScoreReset();
             // var sequence = DOTween.Sequence(); //Sequence生成

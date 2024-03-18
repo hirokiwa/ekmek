@@ -59,11 +59,13 @@ public class InClearManager : MonoBehaviour
         foreach (var obj in objectsToActiveFalse)
         {
             obj.SetActive(false);
+            Player.instance.setIsGameRunning(true);
         }
         
         foreach (var obj in objectsToActiveTrue)
         {
             obj.SetActive(true);
+            Player.instance.setIsGameRunning(false);
         }
     }
 

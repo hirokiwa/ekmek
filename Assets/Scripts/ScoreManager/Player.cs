@@ -51,6 +51,9 @@ public class Player : MonoBehaviour
     public AudioClip howasound;
     AudioSource audioSource;
 
+    // Whether the game stage is in play
+    public bool isGameRunning;
+
     public void Awake()
     {
         if (instance == null)
@@ -189,6 +192,7 @@ public class Player : MonoBehaviour
         remainCount = 2;
         RemainingNumber.text = "✖️ " + remainCount.ToString();
         gameOverUI.SetActive(true);
+        setIsGameRunning(false);
         
         DOVirtual.DelayedCall(3, () => SceneManager.LoadScene("Main"));
 
@@ -205,6 +209,13 @@ public class Player : MonoBehaviour
         //     .Join(DOVirtual.DelayedCall(2, () => UICanvas.SetActive(false)))
         //     .Join(DOVirtual.DelayedCall(2, () => StartUI.SetActive(true)));
             
+    }
+
+    public void setIsGameRunning(bool input) {
+        if(!isGameRunning & input){
+            CalorieManager.instance.resetCalorieScore();
+        }
+        isGameRunning = input;
     }
 
 }
