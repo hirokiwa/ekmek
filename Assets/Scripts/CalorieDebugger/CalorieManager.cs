@@ -10,6 +10,15 @@ public class CalorieManager : MonoBehaviour
   private float Acceleration;
   private float JconScore;
 
+  public static CalorieManager instance;
+
+  public void Awake(){
+    if (instance == null)
+    {
+        instance = this;
+    }
+  }
+
   void Update()
   {
     Debug.Log(AccelerationFilter.instance.last_accel_value);
@@ -45,6 +54,10 @@ public class CalorieManager : MonoBehaviour
   private void setJoyConScoreNumber(string input)
   {
     JoyConScoreNumber.text = input;
+  }
+
+  public void resetCalorieScore() {
+    updateScore(0);
   }
 
 }
