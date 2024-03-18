@@ -4,11 +4,11 @@ using UnityEngine.UI;
 public class CalorieManager : MonoBehaviour
 {
 
-  private const float DEFAULT_BODY_WAIGHT = 60;
+  private const float DEFAULT_BODY_WAIGHT_KG = 60;
 
-  public Text CalorieNumber;
+  public Text CalorieKCalNumber;
 
-  private float Calorie;
+  private float CalorieKCal;
 
   public static CalorieManager instance;
 
@@ -19,36 +19,42 @@ public class CalorieManager : MonoBehaviour
     }
   }
 
-
-  private float calculateCalorie(float Distance, float BodyWeight)
+  private float MToKm(float M)
   {
-    return Distance * BodyWeight;
+    return M / 1000;
   }
 
-  private void updateCalorie(float input)
+
+  private float calculateCalorieKCal(float DistanceKM, float BodyWeightKg)
   {
-    setCalorie(input);
-    setCalorieNumber(input.ToString());
+    return DistanceKM * BodyWeightKg;
   }
 
-  private void setCalorie(float input)
+  private void updateCalorieKCal(float input)
   {
-    Calorie = input;
+    setCalorieKCal(input);
+    setCalorieKCalNumber(input.ToString());
   }
 
-  private void setCalorieNumber(string input)
+  private void setCalorieKCal(float input)
   {
-    CalorieNumber.text = input;
+    CalorieKCal = input;
   }
 
-  public void resetCalorieScore() {
-    updateCalorie(0);
+  private void setCalorieKCalNumber(string input)
+  {
+    CalorieKCalNumber.text = input;
   }
 
-  public void CalorieCalculateExecution() {
-    float distance = DistanceManager.instance.getDistance();
-    float calculatedCalorie = calculateCalorie(distance, DEFAULT_BODY_WAIGHT);
-    updateCalorie(calculatedCalorie);
+  public void resetCalorieKCalScore() {
+    updateCalorieKCal(0);
+  }
+
+  public void CalorieKCalCalculateExecution() {
+    float DistanceM = DistanceManager.instance.getDistanceM();
+    float DistanceKm = MToKm(DistanceM);
+    float calculatedCalorieKCal = calculateCalorieKCal(DistanceKm, DEFAULT_BODY_WAIGHT_KG);
+    updateCalorieKCal(calculatedCalorieKCal);
   }
 
 }

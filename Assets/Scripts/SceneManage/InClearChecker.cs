@@ -55,7 +55,7 @@ public class InClearChecker : MonoBehaviour
         {
             ClearCanvas.SetActive(true);
             Player.instance.setIsGameRunning(false);
-            CalorieManager.instance.CalorieCalculateExecution();
+            CalorieManager.instance.CalorieKCalCalculateExecution();
             eatenFoodCount = 0;
             ScoreCountSystem.instance.ScoreReset();
             // var sequence = DOTween.Sequence(); //Sequence生成

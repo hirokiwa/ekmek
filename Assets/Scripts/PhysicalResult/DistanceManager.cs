@@ -4,18 +4,19 @@ using UnityEngine.UI;
 public class DistanceManager : MonoBehaviour
 {
   private const float ACCELERATION_THRESHOLD = 2;
+  private const float ADJUST_VARIABLE = 100;
 
-  public Text DistanceNumber;
+  public Text DistanceMNumber;
 
   private float Acceleration;
-  private float Distance;
+  private float DistanceM;
 
   public static DistanceManager instance;
 
   public void Awake(){
     if (instance == null)
     {
-        instance = this;
+      instance = this;
     }
   }
 
@@ -25,20 +26,23 @@ public class DistanceManager : MonoBehaviour
 
     setAcceleration(AccelerationFilter.instance?.last_accel_value ?? 0);
     if(Player.instance.isGameRunning){
-      CountUpDistance();
+      CountUpDistanceM();
     }
   }
 
-  void CountUpDistance()
+  void CountUpDistanceM()
   {
-    float additionalScore = Acceleration > ACCELERATION_THRESHOLD ? Acceleration : 0;
-    updateDistance(Distance + additionalScore);
+    float AdditionalDistanceMBase = Acceleration > ACCELERATION_THRESHOLD ? Acceleration : 0;
+    float AdditionalDistanceM = AdditionalDistanceMBase / ADJUST_VARIABLE;
+
+    updateDistanceM(DistanceM + AdditionalDistanceM);
   }
 
-  private void updateDistance(float input)
+  private void updateDistanceM(float input)
   {
-    setDistance(input);
-    setDistanceNumber(input.ToString());
+    setDistanceM(input);
+    string inputText = input.ToString();
+    setDistanceMNumber(input.ToString());
   }
 
   private void setAcceleration(float input)
@@ -46,22 +50,22 @@ public class DistanceManager : MonoBehaviour
     Acceleration = input;
   }
 
-  private void setDistance(float input)
+  private void setDistanceM(float input)
   {
-    Distance = input;
+    DistanceM = input;
   }
 
-  private void setDistanceNumber(string input)
+  private void setDistanceMNumber(string input)
   {
-    DistanceNumber.text = input;
+    DistanceMNumber.text = input;
   }
 
-  public void resetDistance() {
-    updateDistance(0);
+  public void resetDistanceM() {
+    updateDistanceM(0);
   }
 
-  public float getDistance() {
-    return Distance;
+  public float getDistanceM() {
+    return DistanceM;
   }
 
 }

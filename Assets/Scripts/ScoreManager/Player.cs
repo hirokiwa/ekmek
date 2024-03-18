@@ -213,7 +213,7 @@ public class Player : MonoBehaviour
 
     public void setIsGameRunning(bool input) {
         if(!isGameRunning & input){
-            DistanceManager.instance.resetDistance();
+            DistanceManager.instance.resetDistanceM();
         }
         isGameRunning = input;
     }

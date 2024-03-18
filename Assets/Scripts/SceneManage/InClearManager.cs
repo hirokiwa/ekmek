@@ -66,7 +66,7 @@ public class InClearManager : MonoBehaviour
         {
             obj.SetActive(true);
             Player.instance.setIsGameRunning(false);
-            CalorieManager.instance.CalorieCalculateExecution();
+            CalorieManager.instance.CalorieKCalCalculateExecution();
         }
     }
 
