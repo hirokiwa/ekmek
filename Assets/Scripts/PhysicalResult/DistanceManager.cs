@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CalorieManager : MonoBehaviour
+public class DistanceManager : MonoBehaviour
 {
   private const float ACCELERATION_THRESHOLD = 2;
 
@@ -10,7 +10,7 @@ public class CalorieManager : MonoBehaviour
   private float Acceleration;
   private float JoyConScore;
 
-  public static CalorieManager instance;
+  public static DistanceManager instance;
 
   public void Awake(){
     if (instance == null)
