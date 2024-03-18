@@ -95,8 +95,10 @@ public class DeleteTile : MonoBehaviour
         {
             audioSource3.PlayOneShot(PiyoSound);
             
+            // feverアニメーションの処理
             RunFever.SetActive(true);
             isFeverAnimOn();
+            BlinkRunText.instance.RunTextBlink();
 
             Management.instance.power = true;
             Tracking_oikake.instance.power_o = true;

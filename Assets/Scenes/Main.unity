@@ -54562,7 +54562,7 @@ MonoBehaviour:
   StartUI: {fileID: 1727460848}
   UICanvas: {fileID: 1322450416}
   food_tilemap: {fileID: 827719283}
-  inputOptionIsSwitchController: 1
+  inputOptionIsSwitchController: 0
   howasound: {fileID: 0}
   isGameRunning: 1
 --- !u!212 &955674089

@@ -49,6 +49,7 @@ public class Management : MonoBehaviour
                 
                 DeleteTile.instance.RunFever.SetActive(false);
                 DeleteTile.instance.isFeverAnimOff();
+                BlinkRunText.instance.KillBlink();
                 
                 timer = 0.0f;
                 pub_timer = 0.0f;
@@ -86,7 +87,6 @@ public class Management : MonoBehaviour
         Management.instance.stop = true;
 
         yield return new WaitForSeconds(2.0f);
-        
 
         Vector3 pos_o = new Vector3(-3.0f, 0f, 0f);
         Vector3 pos_p = new Vector3(3.0f, 0f, 0f);
