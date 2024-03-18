@@ -64,13 +64,13 @@ public class InStartManager : MonoBehaviour
         foreach (var obj in objectsToActiveFalse)
         {
             obj.SetActive(false);
-            Player.instance.setIsGameRunning(false);
+            Player.setIsGameRunning(false);
         }
         
         foreach (var obj in objectsToActiveTrue)
         {
             obj.SetActive(true);
-            Player.instance.setIsGameRunning(true);
+            Player.setIsGameRunning(true);
         }
     }
 

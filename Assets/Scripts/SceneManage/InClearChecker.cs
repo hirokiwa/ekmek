@@ -55,7 +55,7 @@ public class InClearChecker : MonoBehaviour
         if (eatenFoodCount >= totalFoodCount)
         {
             ClearCanvas.SetActive(true);
-            Player.instance.setIsGameRunning(false);
+            Player.setIsGameRunning(false);
             eatenFoodCount = 0;
             ScoreCountSystem.instance.ScoreReset();
             var sequence = DOTween.Sequence(); //Sequence生成

@@ -69,13 +69,13 @@ public class InGameOverManager : MonoBehaviour
         foreach (var obj in objectsToActiveFalse)
         {
             obj.SetActive(false);
-            Player.instance.setIsGameRunning(true);
+            Player.setIsGameRunning(true);
         }
         
         foreach (var obj in objectsToActiveTrue)
         {
             obj.SetActive(true);
-            Player.instance.setIsGameRunning(false);
+            Player.setIsGameRunning(false);
         }
     }
     
