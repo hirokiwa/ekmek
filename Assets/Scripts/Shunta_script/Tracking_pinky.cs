@@ -228,6 +228,8 @@ public class Tracking_pinky : MonoBehaviour
         {
             if (power_p)
             {
+                ScoreCountSystem.instance.AddScorePowerEsa();
+                
                 StartCoroutine(Management.instance.Pause(1.0f));
 
                 gameObject.layer = LayerMask.NameToLayer("Return");

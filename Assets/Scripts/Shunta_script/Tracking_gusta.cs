@@ -240,6 +240,8 @@ public class Tracking_gusta : MonoBehaviour
         {
             if (power_g)
             {
+                ScoreCountSystem.instance.AddScorePowerEsa();
+                
                 StartCoroutine(Management.instance.Pause(1.0f));
 
                 gameObject.layer = LayerMask.NameToLayer("Return");

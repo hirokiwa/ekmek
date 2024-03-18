@@ -60,7 +60,8 @@ public class Tracking_oikake : MonoBehaviour
         {
             if (pause == true)
             {
-                agent.speed = 40.0f;
+                // 牢屋に戻るスピード
+                agent.speed = 30.0f;
                 agent.velocity = (agent.steeringTarget - transform.position).normalized * agent.speed;
 
                 Vector2 opos = start_point.position;
@@ -209,6 +210,8 @@ public class Tracking_oikake : MonoBehaviour
         {
             if (power_o)
             {
+                ScoreCountSystem.instance.AddScorePowerEsa();
+                
                 StartCoroutine(Management.instance.Pause(1.0f));
 
                 gameObject.layer = LayerMask.NameToLayer("Return");
