@@ -54422,6 +54422,7 @@ MonoBehaviour:
   enemy2: {fileID: 538091543}
   enemy3: {fileID: 1745004938}
   me: {fileID: 955674087}
+  anim: {fileID: 0}
   RemainingNumber: {fileID: 167819454}
   gameOverUI: {fileID: 1513558030}
   StartUI: {fileID: 1727460848}
@@ -56952,7 +56953,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1322450417
 RectTransform:
   m_ObjectHideFlags: 0
@@ -101464,7 +101465,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1727460849
 RectTransform:
   m_ObjectHideFlags: 0
