@@ -14,6 +14,19 @@ public class DeleteTile : MonoBehaviour
 
     [SerializeField] private ScoreCountSystem scoreSystem;
 
+    [SerializeField] public GameObject RunFever;
+    [SerializeField] private Animator feverAnim;
+
+    public static DeleteTile instance;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
+
     private void Start()
     {
         audioSource1 = GetComponent<AudioSource>();
@@ -80,8 +93,10 @@ public class DeleteTile : MonoBehaviour
         }
         else if (ot.gameObject.tag == "PowerEsa")
         {
-            // audioSource2.PlayOneShot(BakuSound);
             audioSource3.PlayOneShot(PiyoSound);
+            
+            RunFever.SetActive(true);
+            isFeverAnimOn();
 
             Management.instance.power = true;
             Tracking_oikake.instance.power_o = true;
@@ -101,5 +116,15 @@ public class DeleteTile : MonoBehaviour
             Destroy(ot.gameObject);
 
         }
+    }
+
+    public void isFeverAnimOn()
+    {
+        feverAnim.SetBool("isFever", true);
+    }
+    
+    public void isFeverAnimOff()
+    {
+        feverAnim.SetBool("isFever", false);
     }
 }

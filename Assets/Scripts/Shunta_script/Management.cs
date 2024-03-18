@@ -47,6 +47,9 @@ public class Management : MonoBehaviour
             {
                 ScoreCountSystem.instance.ResetConsecutiveEatenEnemies();
                 
+                DeleteTile.instance.RunFever.SetActive(false);
+                DeleteTile.instance.isFeverAnimOff();
+                
                 timer = 0.0f;
                 pub_timer = 0.0f;
                 powerTime = 0.0f;
