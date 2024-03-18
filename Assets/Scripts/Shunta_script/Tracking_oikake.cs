@@ -60,14 +60,11 @@ public class Tracking_oikake : MonoBehaviour
         {
             if (pause == true)
             {
-            
-
-                agent.speed = 30.0f;
+                agent.speed = 40.0f;
                 agent.velocity = (agent.steeringTarget - transform.position).normalized * agent.speed;
 
                 Vector2 opos = start_point.position;
                 agent.SetDestination(opos);
-
             }
             else
             {
@@ -81,7 +78,7 @@ public class Tracking_oikake : MonoBehaviour
                     }
 
                     if (!w) agent.speed = speed;
-                    else agent.speed = speed * 0.6f;
+                    else agent.speed = speed * 0.7f;
 
                     ram_o = true;
                     Vector2 pos = target.position;
@@ -191,7 +188,6 @@ public class Tracking_oikake : MonoBehaviour
 
                     agent.speed = speed * 0.6f;
                     agent.SetDestination(rand_pos);
-
                     
                 }
                 
