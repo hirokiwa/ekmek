@@ -16,8 +16,6 @@ public class InClearChecker : MonoBehaviour
     
     [HideInInspector] public int eatenFoodCount = 0; // 食べたエサの数
     [SerializeField] private GameObject ClearCanvas;
-    [SerializeField] private GameObject PlayerObject;
-    [SerializeField] private GameObject UICanvas;
     
     public static InClearChecker instance;
 
@@ -53,6 +51,16 @@ public class InClearChecker : MonoBehaviour
     {
         if (eatenFoodCount >= totalFoodCount)
         {
+            // クリア時間の計測を止める
+            ClearTimeChecker.instance.isTimer = false;
+            
+            // ランキングのリーダーボードにスコア・クリア時間・カロリーを登録
+            float Calorie = CalorieManager.instance.getCalorieKCal();
+            int Calorie_int = (int)Calorie;
+            RankingManager.instance.AddScore(ScoreCountSystem.instance.score, ClearTimeChecker.instance.clearTime, Calorie_int);
+            RankingManager.instance.DisplayRankings();
+
+            
             ClearCanvas.SetActive(true);
             Player.instance.setIsGameRunning(false);
             CalorieManager.instance.CalorieKCalCalculateExecution();
