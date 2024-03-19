@@ -35,29 +35,28 @@ public class InClearManager : MonoBehaviour
     {
         if (m_joyconR != null)
         {
-            bool ZRButtonPressed = m_joyconR.GetButton(Joycon.Button.SHOULDER_2);
+            Debug.Log(m_joyconR.GetButtonDown(Joycon.Button.SHOULDER_2));
+            bool ZRButtonPressed = m_joyconR.GetButtonDown(Joycon.Button.SHOULDER_2);
 
             // Xボタンが押された瞬間を検出
             if (ZRButtonPressed && !xButtonWasPressed)
             {
-                // ToggleObjects();
-                SceneManager.LoadScene("Main");
+                SceneManager.LoadScene("Start");
             }
 
             xButtonWasPressed = ZRButtonPressed;
             
-            if (m_joyconR.GetButtonUp(m_buttons[3]))
+            if (m_joyconR.GetButtonDown(m_buttons[3]))
             {
                 RankingManager.instance.RankingCanvasOn();
             }
         }
         
-        if (!Player.instance.inputOptionIsSwitchController)
+        if (!Player.instance.inputOptionIsSwitchController_CheckBox)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                // ToggleObjects();
-                SceneManager.LoadScene("Main");
+                SceneManager.LoadScene("Start");
             }
             
             if (Input.GetKeyDown(KeyCode.X))    
@@ -66,21 +65,5 @@ public class InClearManager : MonoBehaviour
             }
         }
     }
-
-    private void ToggleObjects()
-    {
-        foreach (var obj in objectsToActiveFalse)
-        {
-            obj.SetActive(false);
-            Player.instance.setIsGameRunning(true);
-        }
-        
-        foreach (var obj in objectsToActiveTrue)
-        {
-            obj.SetActive(true);
-            Player.instance.setIsGameRunning(false);
-            CalorieManager.instance.CalorieKCalCalculateExecution();
-        }
-    }
-
+    
 }
