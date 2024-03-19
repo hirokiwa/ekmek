@@ -5,10 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/0_Frank/Scenes/Main 1.unity
-    guid: 738ab69fa05fc44df82efbd72799092b
+  - enabled: 1
+    path: Assets/Scenes/Start.unity
+    guid: f166237f4b887440585f0d16642d7cb6
+  - enabled: 1
+    path: Assets/Scenes/Tutorial.unity
+    guid: 2ae93880da9e54cbaa3497971fff9c78
+  - enabled: 1
+    path: Assets/Scenes/CountDown.unity
+    guid: b17818903a85f43ef86976be7b902bda
   - enabled: 1
     path: Assets/Scenes/Main.unity
-    guid: 4c775a47ad51849489398f9faf5cc65b
+    guid: 9e375df19919546afa8cbb5a13d6356c
   m_configObjects: {}
