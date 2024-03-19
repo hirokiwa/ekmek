@@ -40,9 +40,10 @@ public class CountDownManager : MonoBehaviour
             
             if (countdownTimer <= 0)
             {
+                Player.speedBoost = PlayerSpeedBoost.instance.speedBoost;
                 Time.timeScale = 1; 
                 // countdownCanvas.SetActive(false);
-                SceneManager.LoadScene("Main 1");
+                SceneManager.LoadScene("Main");
             }
         }
     }

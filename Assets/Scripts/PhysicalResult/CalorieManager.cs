@@ -43,7 +43,7 @@ public class CalorieManager : MonoBehaviour
 
   private void setCalorieKCalNumber(string input)
   {
-    // CalorieKCalNumber.text = input;
+    CalorieKCalNumber.text = input;
   }
 
   public void resetCalorieKCalScore() {

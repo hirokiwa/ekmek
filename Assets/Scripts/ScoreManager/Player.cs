@@ -46,16 +46,22 @@ public class Player : MonoBehaviour
     
     public Tilemap food_tilemap;
 
-    public bool inputOptionIsSwitchController;
+    [SerializeField] public bool inputOptionIsSwitchController_CheckBox;
+    public static bool inputOptionIsSwitchController = true;
+
+    public static float speedBoost;
+    // 30秒で0.5を減少させたいので、1秒あたりの減少量は0.5 / 30
+    float decreaseAmountPerSecond = 0.5f / 30f;
     
-    public AudioClip howasound;
-    AudioSource audioSource;
+    // public AudioClip howasound;
+    // AudioSource audioSource;
 
     // Whether the game stage is in play
     public bool isGameRunning;
 
     public void Awake()
     {
+        inputOptionIsSwitchController = inputOptionIsSwitchController_CheckBox;
         if (instance == null)
         {
             instance = this;
@@ -117,7 +123,22 @@ public class Player : MonoBehaviour
                 }
             
                 rigidbody2D.velocity = new Vector2(AccelerationFilter.instance.last_accel_value, AccelerationFilter.instance.last_accel_value)
-                                       * directionVector * magnificationVec;
+                                       * directionVector * magnificationVec * speedBoost;
+                
+                if (speedBoost > 1.0f)
+                {
+                    // 30秒での減少量を計算
+                    float decreaseAmountPerSecond = (speedBoost - 1.0f) / 30f;
+        
+                    // フレームごとの減少量を計算
+                    speedBoost -= decreaseAmountPerSecond * Time.deltaTime;
+        
+                    // speedBoostが1.0未満にならないようにする
+                    if (speedBoost < 1.0f)
+                    {
+                        speedBoost = 1.0f;
+                    }
+                }
             }
             else
             {
@@ -153,7 +174,6 @@ public class Player : MonoBehaviour
                 }
                 else
                 {
-                    // rigidbody2D.velocity = new Vector2(0, 0);
                     anim.SetBool("isRun", false);
                 }
                 
@@ -195,7 +215,7 @@ public class Player : MonoBehaviour
         
         setIsGameRunning(false);
         
-        SceneManager.LoadScene("Main 1");
+        SceneManager.LoadScene("Main");
     }
 
     public void setIsGameRunning(bool input) {

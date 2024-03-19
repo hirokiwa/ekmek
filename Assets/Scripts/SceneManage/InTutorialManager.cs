@@ -1,13 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class InStartManager : MonoBehaviour
+public class InTutorialManager : MonoBehaviour
 {
-    
     private static readonly Joycon.Button[] m_buttons =
         Enum.GetValues( typeof( Joycon.Button ) ) as Joycon.Button[];
 
@@ -17,9 +15,6 @@ public class InStartManager : MonoBehaviour
     private JoyconManager joycon;
     private bool xButtonWasPressed;
     private bool zruttonWasPressed;
-    
-    [SerializeField] private GameObject[] objectsToActiveFalse;
-    [SerializeField] private GameObject[] objectsToActiveTrue;
     
     // Start is called before the first frame update
     void Start()
@@ -31,33 +26,16 @@ public class InStartManager : MonoBehaviour
         xButtonWasPressed = false;
     }
 
-    private void Update()
+    // Update is called once per frame
+    void Update()
     {
         // joycon接続時に呼ばれる処理
         if (m_joyconR != null)
         {
-            bool ZRButtonPressed = m_joyconR.GetButtonDown(Joycon.Button.SHOULDER_2);
-            
-            // ZRボタンが押された瞬間を検出
-            if (ZRButtonPressed && !zruttonWasPressed)
-            {
-                SceneManager.LoadScene("CountDown");
-            }
-
-            xButtonWasPressed = ZRButtonPressed;
-            
-            
             if (m_joyconR.GetButtonDown(m_buttons[3]))
             {
-                SceneManager.LoadScene("Tutorial");
+                SceneManager.LoadScene("Start");
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            SceneManager.LoadScene("CountDown");
-        }
-        
     }
-
 }
