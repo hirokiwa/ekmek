@@ -884,7 +884,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -2.899994}
+  m_AnchoredPosition: {x: 0, y: -2.8999023}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &97679756
@@ -104197,6 +104197,30 @@ MonoBehaviour:
   SCORE: {fileID: 2133453888}
   TIME: {fileID: 907440378}
   KCAL: {fileID: 157242695}
+  scoreTexts:
+  - {fileID: 1149996014}
+  - {fileID: 1218068644}
+  - {fileID: 1679146106}
+  - {fileID: 684409995}
+  - {fileID: 652562180}
+  timeTexts:
+  - {fileID: 1962609421}
+  - {fileID: 1043224457}
+  - {fileID: 1902116842}
+  - {fileID: 318248578}
+  - {fileID: 863972367}
+  kcalTexts:
+  - {fileID: 217610462}
+  - {fileID: 616103818}
+  - {fileID: 804379386}
+  - {fileID: 806479157}
+  - {fileID: 28650410}
+  rankTexts:
+  - {fileID: 990231008}
+  - {fileID: 1305818079}
+  - {fileID: 304880096}
+  - {fileID: 496413383}
+  - {fileID: 545965470}
 --- !u!4 &1703932399
 Transform:
   m_ObjectHideFlags: 0

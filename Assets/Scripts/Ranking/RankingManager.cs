@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class RankingManager : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class RankingManager : MonoBehaviour
     public Text[] scoreTexts; // スコア表示用テキスト配列
     public Text[] timeTexts;  // クリア時間表示用テキスト配列
     public Text[] kcalTexts;  // 消費カロリー表示用テキスト配列
+    public Text[] rankTexts; // 順位表示用テキスト配列
+
     
     public static RankingManager instance;
     
@@ -25,6 +28,8 @@ public class RankingManager : MonoBehaviour
 
     // スコアを保存する際のキー
     private const string ScoresKey = "Scores";
+    
+    private int newScoreRank = -1;
     
     private void Awake()
     {
@@ -63,6 +68,9 @@ public class RankingManager : MonoBehaviour
         {
             scores.RemoveRange(MaxRankingEntries, scores.Count - MaxRankingEntries);
         }
+        
+        // 新しいスコアがランキングに入ったかを確認
+        newScoreRank = scores.FindIndex(se => se.Score == score && se.Time == time && se.NumberA == kcal);
 
         SaveScores(scores);
     }
@@ -115,12 +123,11 @@ public class RankingManager : MonoBehaviour
 
     }
 
-    // ランキングをコンソールに表示
+    // ランキングをUIに表示
     public void DisplayRankings()
     {
         List<ScoreEntry> scores = GetScores();
 
-        // 各テキストUIを更新
         for (int i = 0; i < MaxRankingEntries; i++)
         {
             if (i < scores.Count)
@@ -128,17 +135,53 @@ public class RankingManager : MonoBehaviour
                 ScoreEntry entry = scores[i];
                 scoreTexts[i].text = entry.Score.ToString();
                 timeTexts[i].text = (entry.Time / 60).ToString().PadLeft(2, '0') + ":" + (entry.Time % 60).ToString().PadLeft(2, '0');
-                kcalTexts[i].text = entry.NumberA.ToString(); // NumberAが消費カロリーに相当
+                kcalTexts[i].text = entry.NumberA.ToString();
+                rankTexts[i].text = (i + 1).ToString(); // 順位の更新
+
+                // 新しくランキングに載ったスコアならテキストの色を黄色にする
+                if (i == newScoreRank)
+                {
+                    // 点滅させるテキストの色を設定する
+                    Color startColor = Color.yellow;
+                    Color endColor = Color.white;
+
+                    // DOTweenを使用してテキストの色を点滅させる
+                    scoreTexts[i].DOColor(endColor, 0.25f).SetLoops(12, LoopType.Yoyo).SetEase(Ease.InOutQuad);
+                    timeTexts[i].DOColor(endColor, 0.25f).SetLoops(12, LoopType.Yoyo).SetEase(Ease.InOutQuad);
+                    kcalTexts[i].DOColor(endColor, 0.25f).SetLoops(12, LoopType.Yoyo).SetEase(Ease.InOutQuad);
+                    rankTexts[i].DOColor(endColor, 0.25f).SetLoops(12, LoopType.Yoyo).SetEase(Ease.InOutQuad);
+                    
+                    scoreTexts[i].color = Color.yellow;
+                    timeTexts[i].color = Color.yellow;
+                    kcalTexts[i].color = Color.yellow;
+                    rankTexts[i].color = Color.yellow; // 順位テキストの色も黄色に
+                }
+                else
+                {
+                    // それ以外は白色にする
+                    scoreTexts[i].color = Color.white;
+                    timeTexts[i].color = Color.white;
+                    kcalTexts[i].color = Color.white;
+                    rankTexts[i].color = Color.white; // 順位テキストの色も白色に
+                }
             }
             else
             {
-                // スコアが足りない場合は空にする
+                // スコアが足りない場合は空にして色をリセット
                 scoreTexts[i].text = "";
                 timeTexts[i].text = "";
                 kcalTexts[i].text = "";
+                rankTexts[i].text = ""; // 順位テキストもクリア
+                scoreTexts[i].color = Color.white;
+                timeTexts[i].color = Color.white;
+                kcalTexts[i].color = Color.white;
+                rankTexts[i].color = Color.white; // 順位テキストの色もリセット
             }
         }
+    
+        newScoreRank = -1; // ランキング表示後に新しいスコアのランク位置をリセット
     }
+
 
     public void RankingCanvasOn()
     {
