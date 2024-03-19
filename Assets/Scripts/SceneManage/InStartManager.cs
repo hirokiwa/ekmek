@@ -23,7 +23,7 @@ public class InStartManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Time.timeScale = 0;
+        // Time.timeScale = 0;
         
         var m_joycons = JoyconManager.Instance.j;
         if ( m_joycons == null || m_joycons.Count <= 0 ) return;
@@ -42,21 +42,17 @@ public class InStartManager : MonoBehaviour
             // Xボタンが押された瞬間を検出
             if (xButtonPressed && !xButtonWasPressed)
             {
-                Time.timeScale = 1; 
                 ToggleObjects();
             }
 
             xButtonWasPressed = xButtonPressed;
         }
 
-        if (!Player.instance.inputOptionIsSwitchController)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                Time.timeScale = 1; 
-                ToggleObjects();
-            }
+            SceneManager.LoadScene("CountDown");
         }
+        
     }
 
     private void ToggleObjects()

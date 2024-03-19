@@ -40,29 +40,29 @@ public class InGameOverManager : MonoBehaviour
         
     }
 
-    private void Update()
-    {
-        if (m_joyconR != null)
-        {
-            bool xButtonPressed = m_joyconR.GetButton(Joycon.Button.DPAD_UP);
-
-            // Xボタンが押された瞬間を検出
-            if (xButtonPressed && !xButtonWasPressed)
-            {
-                ToggleObjects();
-            }
-
-            xButtonWasPressed = xButtonPressed;
-        }
-        
-        if (!Player.instance.inputOptionIsSwitchController)
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                ToggleObjects();
-            }
-        }
-    }
+    // private void Update()
+    // {
+    //     if (m_joyconR != null)
+    //     {
+    //         bool xButtonPressed = m_joyconR.GetButton(Joycon.Button.DPAD_UP);
+    //
+    //         // Xボタンが押された瞬間を検出
+    //         if (xButtonPressed && !xButtonWasPressed)
+    //         {
+    //             SceneManager.LoadScene("Start");
+    //         }
+    //
+    //         xButtonWasPressed = xButtonPressed;
+    //     }
+    //     
+    //     if (!Player.instance.inputOptionIsSwitchController)
+    //     {
+    //         if (Input.GetKeyDown(KeyCode.Space))
+    //         {
+    //             SceneManager.LoadScene("Start");
+    //         }
+    //     }
+    // }
 
     public void ToggleObjects()
     {

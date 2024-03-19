@@ -195,7 +195,7 @@ public class Player : MonoBehaviour
         
         setIsGameRunning(false);
         
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene("Main 1");
     }
 
     public void setIsGameRunning(bool input) {

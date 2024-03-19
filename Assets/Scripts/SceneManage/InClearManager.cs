@@ -41,7 +41,7 @@ public class InClearManager : MonoBehaviour
             if (ZRButtonPressed && !xButtonWasPressed)
             {
                 // ToggleObjects();
-                SceneManager.LoadScene("Main");
+                SceneManager.LoadScene("Main 1");
             }
 
             xButtonWasPressed = ZRButtonPressed;
@@ -57,7 +57,7 @@ public class InClearManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 // ToggleObjects();
-                SceneManager.LoadScene("Main");
+                SceneManager.LoadScene("Start");
             }
             
             if (Input.GetKeyDown(KeyCode.X))    
