@@ -7,7 +7,7 @@ public class ScoreCountSystem : MonoBehaviour
 {
     public Text scoreText; // 現在のスコアを表示するテキスト
     public Text highScoreText; // ハイスコアを表示するテキスト
-    private int score; // 現在のスコア
+    [HideInInspector] public int score; // 現在のスコア
     private int highScore; // ハイスコア
 
     public static ScoreCountSystem instance;

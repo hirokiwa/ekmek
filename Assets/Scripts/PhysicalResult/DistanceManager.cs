@@ -22,8 +22,6 @@ public class DistanceManager : MonoBehaviour
 
   void Update()
   {
-    Debug.Log(AccelerationFilter.instance.last_accel_value);
-
     setAcceleration(AccelerationFilter.instance?.last_accel_value ?? 0);
     if(Player.instance.isGameRunning){
       CountUpDistanceM();
@@ -57,7 +55,7 @@ public class DistanceManager : MonoBehaviour
 
   private void setDistanceMNumber(string input)
   {
-    DistanceMNumber.text = input;
+    // DistanceMNumber.text = input;
   }
 
   public void resetDistanceM() {

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class InClearManager : MonoBehaviour
 {
@@ -34,22 +35,34 @@ public class InClearManager : MonoBehaviour
     {
         if (m_joyconR != null)
         {
-            bool xButtonPressed = m_joyconR.GetButton(Joycon.Button.SHOULDER_2);
+            bool ZRButtonPressed = m_joyconR.GetButton(Joycon.Button.SHOULDER_2);
 
             // Xボタンが押された瞬間を検出
-            if (xButtonPressed && !xButtonWasPressed)
+            if (ZRButtonPressed && !xButtonWasPressed)
             {
-                ToggleObjects();
+                // ToggleObjects();
+                SceneManager.LoadScene("Main");
             }
 
-            xButtonWasPressed = xButtonPressed;
+            xButtonWasPressed = ZRButtonPressed;
+            
+            if (m_joyconR.GetButtonUp(m_buttons[3]))
+            {
+                RankingManager.instance.RankingCanvasOn();
+            }
         }
         
         if (!Player.instance.inputOptionIsSwitchController)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                ToggleObjects();
+                // ToggleObjects();
+                SceneManager.LoadScene("Main");
+            }
+            
+            if (Input.GetKeyDown(KeyCode.X))    
+            {
+                RankingManager.instance.RankingCanvasOn();
             }
         }
     }
