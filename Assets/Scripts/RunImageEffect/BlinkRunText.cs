@@ -24,6 +24,7 @@ public class BlinkRunText : MonoBehaviour
     private void Start()
     {
         loopBlinkText.SetRecyclable(true);
+        RunTextBlink();
     }
 
     // Start is called before the first frame update
