@@ -59,6 +59,8 @@ public class Player : MonoBehaviour
     // Whether the game stage is in play
     public bool isGameRunning;
 
+    private int RotateDigree;
+
     public void Awake()
     {
         inputOptionIsSwitchController = inputOptionIsSwitchController_CheckBox;
@@ -96,6 +98,7 @@ public class Player : MonoBehaviour
                     directionVector = new Vector2(-1f, 0);
             
                     v = 0;
+                    handleGoLeft();
                 }
                 else if (m_joyconR.GetButtonDown(m_buttons[1]))
                 {
@@ -103,6 +106,7 @@ public class Player : MonoBehaviour
                     directionVector = new Vector2(1f, 0);
             
                     v = 1;
+                    handleGoRight();
                 }
                 else if (m_joyconR.GetButtonDown(m_buttons[3]))
                 {
@@ -110,6 +114,7 @@ public class Player : MonoBehaviour
                     directionVector = new Vector2(0, 1f);
             
                     v = 2;
+                    handleGoUp();
                 }
                 else if (m_joyconR.GetButtonDown(m_buttons[0]))
                 {
@@ -117,6 +122,7 @@ public class Player : MonoBehaviour
                     directionVector = new Vector2(0, -1f);
             
                     v = 3;
+                    handleGoDown();
                 }else
                 {
                     anim.SetBool("isRun", true);
@@ -150,6 +156,7 @@ public class Player : MonoBehaviour
                     anim.SetBool("isRun", true);
                 
                     v = 0;
+                    handleGoLeft();
                 }
                 else if (Input.GetKey("right"))
                 {
@@ -157,6 +164,7 @@ public class Player : MonoBehaviour
                     anim.SetBool("isRun", true);
                 
                     v = 1;
+                    handleGoRight();
                 }
                 else if (Input.GetKey("up"))
                 {
@@ -164,6 +172,7 @@ public class Player : MonoBehaviour
                     anim.SetBool("isRun", true);
                 
                     v = 2;
+                    handleGoUp();
                 }
                 else if (Input.GetKey("down"))
                 {
@@ -171,6 +180,7 @@ public class Player : MonoBehaviour
                     anim.SetBool("isRun", true);
                 
                     v = 3;
+                    handleGoDown();
                 }
                 else
                 {
@@ -223,6 +233,54 @@ public class Player : MonoBehaviour
             DistanceManager.instance.resetDistanceM();
         }
         isGameRunning = input;
+    }
+
+    public void handleGoRight(){
+        changeRotateDigree(0);
+    }
+    public void handleGoLeft(){
+        changeRotateDigree(180);
+    }
+    public void handleGoUp(){
+        changeRotateDigree(90);
+    }
+    public void handleGoDown(){
+        changeRotateDigree(270);
+    }
+
+    private void changeRotateDigree(int NewDigree){
+        int CurrentRotateDigree = getRotateDigree();
+        int DifferenceZ = NewDigree - CurrentRotateDigree;
+        bool turnPacman = turnLeftFromUpOrDown(CurrentRotateDigree, NewDigree);
+        int DifferenceX = getDifferenceX(CurrentRotateDigree, NewDigree);
+        transform.Rotate(DifferenceX, 0, turnPacman ? DifferenceZ + 180 : DifferenceZ);
+        setRotateDigree(NewDigree);
+    }
+
+    private bool turnLeftFromUpOrDown(int CurrentDigreeZ, int NewDigreeZ)
+    {
+        bool IsCurrentUpOrDown = CurrentDigreeZ == 90 | CurrentDigreeZ == 270;
+        bool IsNextLeft = NewDigreeZ == 180;
+        return IsCurrentUpOrDown & IsNextLeft;
+    }
+
+    private int getDifferenceX(int CurrentDigreeZ, int NewDigreeZ)
+    {
+        bool IsCurrentLeft = CurrentDigreeZ == 180;
+        bool IsNextLeft = NewDigreeZ == 180;
+        bool TurnX = IsCurrentLeft ^ IsNextLeft;
+        return  TurnX ? 180 : 0;
+    }
+
+    public void resetDirection() {
+        changeRotateDigree(0);
+    }
+
+    private int getRotateDigree(){
+        return RotateDigree;
+    }
+    private void setRotateDigree(int input){
+        RotateDigree = input;
     }
 
 }
