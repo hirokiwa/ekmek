@@ -252,6 +252,10 @@ public class Player : MonoBehaviour
         return  TurnX ? 180 : 0;
     }
 
+    public void resetDirection() {
+        changeRotateDigree(0);
+    }
+
     private int getRotateDigree(){
         return RotateDigree;
     }

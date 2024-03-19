@@ -84,6 +84,7 @@ public class Management : MonoBehaviour
     public IEnumerator Restart(NavMeshAgent o, NavMeshAgent p, NavMeshAgent g, GameObject gameObject)
     {
 
+        Player.instance.resetDirection();
         Management.instance.stop = true;
         
         yield return new WaitForSeconds(2.0f);
