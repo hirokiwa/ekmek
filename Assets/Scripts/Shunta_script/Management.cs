@@ -85,23 +85,23 @@ public class Management : MonoBehaviour
     {
 
         Management.instance.stop = true;
-
+        
         yield return new WaitForSeconds(2.0f);
-
+        
         Vector3 pos_o = new Vector3(-3.0f, 0f, 0f);
         Vector3 pos_p = new Vector3(3.0f, 0f, 0f);
         Vector3 pos_g = new Vector3(0f, 0f, 0f);
-
+        
         gameObject.transform.position = new Vector2(0f, -16.0f);
         o.Warp(pos_o);
         p.Warp(pos_p);
         g.Warp(pos_g);
-
+        
         ntimer = 0.0f;
         pub_ntimer = 0.0f;
-
+        
         yield return new WaitForSeconds(2.0f);
-
+        
         Management.instance.stop = false;
     }
 

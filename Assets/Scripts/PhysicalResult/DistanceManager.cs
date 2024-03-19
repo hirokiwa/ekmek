@@ -55,7 +55,7 @@ public class DistanceManager : MonoBehaviour
 
   private void setDistanceMNumber(string input)
   {
-    DistanceMNumber.text = input;
+    // DistanceMNumber.text = input;
   }
 
   public void resetDistanceM() {
