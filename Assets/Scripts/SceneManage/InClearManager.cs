@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class InClearManager : MonoBehaviour
 {
@@ -40,6 +41,7 @@ public class InClearManager : MonoBehaviour
             if (xButtonPressed && !xButtonWasPressed)
             {
                 ToggleObjects();
+                DOVirtual.DelayedCall(3, () => SceneManager.LoadScene("Main 1"));
             }
 
             xButtonWasPressed = xButtonPressed;
@@ -50,6 +52,12 @@ public class InClearManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 ToggleObjects();
+                DOVirtual.DelayedCall(0.1f, () => SceneManager.LoadScene("Main 1"));
+            }
+            
+            if (Input.GetKeyDown(KeyCode.X))    
+            {
+                RankingManager.instance.RankingCanvasOn();
             }
         }
     }

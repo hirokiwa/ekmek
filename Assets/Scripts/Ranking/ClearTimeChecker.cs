@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -20,6 +21,11 @@ public class ClearTimeChecker : MonoBehaviour
         {
             instance = this;
         }
+    }
+
+    private void Update()
+    {
+        // Debug.Log((clearTime / 60).ToString().PadLeft(2, '0') + ":" + (clearTime % 60).ToString().PadLeft(2, '0'));
     }
 
     private void FixedUpdate()

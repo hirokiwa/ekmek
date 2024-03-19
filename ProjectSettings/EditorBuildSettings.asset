@@ -5,7 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/0_Frank/Scenes/Main 1.unity
     guid: 738ab69fa05fc44df82efbd72799092b
+  - enabled: 1
+    path: Assets/0_Frank/Scenes/FinalScene/Main 1.unity
+    guid: 4c775a47ad51849489398f9faf5cc65b
   m_configObjects: {}

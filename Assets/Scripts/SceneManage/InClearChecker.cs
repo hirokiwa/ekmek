@@ -59,6 +59,7 @@ public class InClearChecker : MonoBehaviour
             int Calorie_int = (int)Calorie;
             RankingManager.instance.AddScore(ScoreCountSystem.instance.score, ClearTimeChecker.instance.clearTime, Calorie_int);
             RankingManager.instance.DisplayRankings();
+            RankingManager.instance.DisplayThisTimeScore(ScoreCountSystem.instance.score, ClearTimeChecker.instance.clearTime, Calorie_int);
 
             
             ClearCanvas.SetActive(true);
@@ -66,16 +67,7 @@ public class InClearChecker : MonoBehaviour
             CalorieManager.instance.CalorieKCalCalculateExecution();
             eatenFoodCount = 0;
             ScoreCountSystem.instance.ScoreReset();
-            // var sequence = DOTween.Sequence(); //Sequence生成
-
-            DOVirtual.DelayedCall(3, () => SceneManager.LoadScene("Main"));
-            //
-            // sequence.Append(DOVirtual.DelayedCall(2, () => TilemapReseter.instance.ResetTiles()))
-            //     .Join(DOVirtual.DelayedCall(3, () => Time.timeScale = 0))
-            //     .Join(DOVirtual.DelayedCall(2, () => Player.transform.position = new Vector2(0f, -16.0f)))
-            //     .Join(DOVirtual.DelayedCall(2, () => food_tilemap.gameObject.SetActive(false)))
-            //     .Join(DOVirtual.DelayedCall(2, () => UICanvas.gameObject.SetActive(false)))
-            //     .Join(DOVirtual.DelayedCall(3, () => food_tilemap.gameObject.SetActive(true)));
+            
         }
     }
 }
