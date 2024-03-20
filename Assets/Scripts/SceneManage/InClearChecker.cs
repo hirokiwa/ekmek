@@ -64,6 +64,7 @@ public class InClearChecker : MonoBehaviour
             RankingManager.instance.AddScore(ScoreCountSystem.instance.score, ClearTimeChecker.instance.clearTime, Calorie_int);
             RankingManager.instance.DisplayRankings();
             RankingManager.instance.DisplayThisTimeScore(ScoreCountSystem.instance.score, ClearTimeChecker.instance.clearTime, Calorie_int);
+            Debug.Log("Calorie_int" + Calorie);
 
             
             ClearCanvas.SetActive(true);

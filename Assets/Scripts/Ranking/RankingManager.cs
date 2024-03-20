@@ -120,6 +120,11 @@ public class RankingManager : MonoBehaviour
         // ここで整数値で計算してた経過時間をXX:XXに形式に計算直す
         TIME.text = (time / 60).ToString().PadLeft(2, '0') + ":" + (time % 60).ToString().PadLeft(2, '0');
         KCAL.text = kcal.ToString();
+        
+        for (int i = 0; i < scoreTexts.Length; i++)
+        {
+            Debug.Log($"Rank {i + 1}: Score = {scoreTexts[i]}, Time = {timeTexts[i]}, Number A = {kcalTexts[i]}");
+        }
 
     }
 

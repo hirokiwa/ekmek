@@ -41,8 +41,8 @@ public class CountDownManager : MonoBehaviour
             if (countdownTimer <= 0)
             {
                 Player.speedBoost = PlayerSpeedBoost.instance.speedBoost;
-                Time.timeScale = 1; 
-                // countdownCanvas.SetActive(false);
+                Time.timeScale = 1;
+                countdownText.text = "GO!";
                 SceneManager.LoadScene("Main");
             }
         }
