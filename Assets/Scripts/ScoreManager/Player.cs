@@ -87,6 +87,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(isGameRunning);
         if (!Management.instance.stop)
         {
             if (inputOptionIsSwitchController)

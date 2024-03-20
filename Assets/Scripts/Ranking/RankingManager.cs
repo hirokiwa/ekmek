@@ -44,13 +44,13 @@ public class RankingManager : MonoBehaviour
     {
         public int Score;
         public int Time;
-        public int Kcal;
+        public int NumberA;
 
-        public ScoreEntry(int score, int time, int kcal)
+        public ScoreEntry(int score, int time, int numberA)
         {
             Score = score;
             Time = time;
-            Kcal = kcal;
+            NumberA = numberA;
         }
     }
 
@@ -70,7 +70,7 @@ public class RankingManager : MonoBehaviour
         }
         
         // 新しいスコアがランキングに入ったかを確認
-        newScoreRank = scores.FindIndex(se => se.Score == score && se.Time == time && se.Kcal == kcal);
+        newScoreRank = scores.FindIndex(se => se.Score == score && se.Time == time && se.NumberA == kcal);
 
         SaveScores(scores);
     }
@@ -82,7 +82,7 @@ public class RankingManager : MonoBehaviour
         foreach (var score in scores)
         {
             if (scoreString != "") scoreString += "|";
-            scoreString += $"{score.Score},{score.Time},{score.Kcal}";
+            scoreString += $"{score.Score},{score.Time},{score.NumberA}";
         }
 
         PlayerPrefs.SetString(ScoresKey, scoreString);
@@ -123,7 +123,7 @@ public class RankingManager : MonoBehaviour
         
         for (int i = 0; i < scoreTexts.Length; i++)
         {
-            Debug.Log($"Rank {i + 1}: Score = {scoreTexts[i].text}, Time = {timeTexts[i].text}, Number A = {kcalTexts[i].text}");
+            Debug.Log($"Rank {i + 1}: Score = {scoreTexts[i]}, Time = {timeTexts[i]}, Number A = {kcalTexts[i]}");
         }
 
     }
@@ -140,7 +140,7 @@ public class RankingManager : MonoBehaviour
                 ScoreEntry entry = scores[i];
                 scoreTexts[i].text = entry.Score.ToString();
                 timeTexts[i].text = (entry.Time / 60).ToString().PadLeft(2, '0') + ":" + (entry.Time % 60).ToString().PadLeft(2, '0');
-                kcalTexts[i].text = entry.Kcal.ToString();
+                kcalTexts[i].text = entry.NumberA.ToString();
                 rankTexts[i].text = (i + 1).ToString(); // 順位の更新
 
                 // 新しくランキングに載ったスコアならテキストの色を黄色にする
