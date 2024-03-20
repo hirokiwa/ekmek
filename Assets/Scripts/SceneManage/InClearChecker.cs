@@ -58,6 +58,11 @@ public class InClearChecker : MonoBehaviour
             
             GameOverCanvas.SetActive(false);
 
+            ClearCanvas.SetActive(true);
+            UICanvas.SetActive(false);
+            Player.instance.setIsGameRunning(false);
+            CalorieManager.instance.CalorieKCalCalculateExecution();
+
             // ランキングのリーダーボードにスコア・クリア時間・カロリーを登録
             float Calorie = CalorieManager.instance.getCalorieKCal();
             float Calorie_int = Calorie;
@@ -67,10 +72,6 @@ public class InClearChecker : MonoBehaviour
             Debug.Log("Calorie_int" + Calorie);
 
             
-            ClearCanvas.SetActive(true);
-            UICanvas.SetActive(false);
-            Player.instance.setIsGameRunning(false);
-            CalorieManager.instance.CalorieKCalCalculateExecution();
             eatenFoodCount = 0;
             ScoreCountSystem.instance.ScoreReset();
             
