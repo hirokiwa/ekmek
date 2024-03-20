@@ -2107,7 +2107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38aa46083053246719c29b7135186074, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  food_tilemap: {fileID: 747200725}
+  food_tilemap: {fileID: 827719283}
   eatenFoodCount: 0
   ClearCanvas: {fileID: 1919884721}
   UICanvas: {fileID: 1322450416}
@@ -49791,7 +49791,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &747200722
 Transform:
   m_ObjectHideFlags: 0
@@ -50338,7 +50338,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &827719281
 Transform:
   m_ObjectHideFlags: 0
@@ -56236,7 +56236,7 @@ MonoBehaviour:
   gameOverUI: {fileID: 1513558030}
   StartUI: {fileID: 1727460848}
   UICanvas: {fileID: 1322450416}
-  food_tilemap: {fileID: 747200725}
+  food_tilemap: {fileID: 827719283}
   inputOptionIsSwitchController_CheckBox: 1
   isGameRunning: 1
 --- !u!212 &955674089
