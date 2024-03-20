@@ -16,7 +16,7 @@ public class InStartManager : MonoBehaviour
     private Joycon.Button?  m_pressedButtonR;
     private JoyconManager joycon;
     private bool xButtonWasPressed;
-    private bool zruttonWasPressed;
+    private bool zrButtonWasPressed;
     
     [SerializeField] private GameObject[] objectsToActiveFalse;
     [SerializeField] private GameObject[] objectsToActiveTrue;
@@ -39,7 +39,7 @@ public class InStartManager : MonoBehaviour
             bool ZRButtonPressed = m_joyconR.GetButtonDown(Joycon.Button.SHOULDER_2);
             
             // ZRボタンが押された瞬間を検出
-            if (ZRButtonPressed && !zruttonWasPressed)
+            if (ZRButtonPressed && !zrButtonWasPressed)
             {
                 SceneManager.LoadScene("CountDown");
             }

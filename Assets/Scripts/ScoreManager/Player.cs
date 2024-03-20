@@ -225,7 +225,7 @@ public class Player : MonoBehaviour
         
         setIsGameRunning(false);
         
-        SceneManager.LoadScene("Start");
+        DOVirtual.DelayedCall(2, () => SceneManager.LoadScene("Start"));
     }
 
     public void setIsGameRunning(bool input) {
