@@ -44,9 +44,9 @@ public class RankingManager : MonoBehaviour
     {
         public int Score;
         public int Time;
-        public int NumberA;
+        public float NumberA;
 
-        public ScoreEntry(int score, int time, int numberA)
+        public ScoreEntry(int score, int time, float numberA)
         {
             Score = score;
             Time = time;
@@ -55,7 +55,7 @@ public class RankingManager : MonoBehaviour
     }
 
     // スコアを追加する
-    public void AddScore(int score, int time, int kcal)
+    public void AddScore(int score, int time, float kcal)
     {
         List<ScoreEntry> scores = GetScores();
         scores.Add(new ScoreEntry(score, time, kcal));
@@ -114,7 +114,7 @@ public class RankingManager : MonoBehaviour
     /// <summary>
     /// 今回のスコア（スコア＋経過時間＋消費カロリー）を一番上に表示するための処理
     /// </summary>
-    public void DisplayThisTimeScore(int score, int time, int kcal)
+    public void DisplayThisTimeScore(int score, int time, float kcal)
     {
         SCORE.text = score.ToString();
         // ここで整数値で計算してた経過時間をXX:XXに形式に計算直す

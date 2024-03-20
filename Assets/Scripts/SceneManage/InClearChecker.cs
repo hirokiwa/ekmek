@@ -60,7 +60,7 @@ public class InClearChecker : MonoBehaviour
 
             // ランキングのリーダーボードにスコア・クリア時間・カロリーを登録
             float Calorie = CalorieManager.instance.getCalorieKCal();
-            int Calorie_int = (int)Calorie;
+            float Calorie_int = Calorie;
             RankingManager.instance.AddScore(ScoreCountSystem.instance.score, ClearTimeChecker.instance.clearTime, Calorie_int);
             RankingManager.instance.DisplayRankings();
             RankingManager.instance.DisplayThisTimeScore(ScoreCountSystem.instance.score, ClearTimeChecker.instance.clearTime, Calorie_int);
