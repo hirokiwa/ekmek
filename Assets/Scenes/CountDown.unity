@@ -961,7 +961,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blinkRunText: {fileID: 800943525}
-  dotweenInterval: 0
+  dotweenInterval: 0.4
 --- !u!1 &700621823
 GameObject:
   m_ObjectHideFlags: 0
@@ -1858,7 +1858,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blinkRunText: {fileID: 1044456442}
-  dotweenInterval: 0
+  dotweenInterval: 0.4
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
