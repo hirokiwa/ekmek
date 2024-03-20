@@ -35,7 +35,6 @@ public class InClearManager : MonoBehaviour
     {
         if (m_joyconR != null)
         {
-            Debug.Log(m_joyconR.GetButtonDown(Joycon.Button.SHOULDER_2));
             bool ZRButtonPressed = m_joyconR.GetButtonDown(Joycon.Button.SHOULDER_2);
 
             // Xボタンが押された瞬間を検出
@@ -48,6 +47,7 @@ public class InClearManager : MonoBehaviour
             
             if (m_joyconR.GetButtonDown(m_buttons[3]))
             {
+                Debug.Log("呼ばれたよ！");
                 RankingManager.instance.RankingCanvasOn();
             }
         }

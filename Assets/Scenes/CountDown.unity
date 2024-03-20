@@ -957,11 +957,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 652125006}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ed446a9197db4edc8480cd4adf238c7, type: 3}
+  m_Script: {fileID: 11500000, guid: b5b1c82817d9f4abeb2941e4f8f5b1d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   blinkRunText: {fileID: 800943525}
-  dotweenInterval: 0.4
+  dotweenInterval: 0
 --- !u!1 &700621823
 GameObject:
   m_ObjectHideFlags: 0
@@ -1854,11 +1854,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2052432218}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ed446a9197db4edc8480cd4adf238c7, type: 3}
+  m_Script: {fileID: 11500000, guid: b5b1c82817d9f4abeb2941e4f8f5b1d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   blinkRunText: {fileID: 1044456442}
-  dotweenInterval: 0.4
+  dotweenInterval: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

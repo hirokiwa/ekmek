@@ -1148,54 +1148,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 120864633}
   m_CullTransparentMesh: 1
---- !u!1 &128302363
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 128302365}
-  - component: {fileID: 128302364}
-  m_Layer: 0
-  m_Name: CountDownManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &128302364
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 128302363}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b013c1db0b4a949e1b79114fa1cfa2a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  countdownCanvas: {fileID: 322345011}
-  countdownText: {fileID: 1817425462}
-  countdownDuration: 3
-  countdownTimer: 0
---- !u!4 &128302365
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 128302363}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 377.41168, y: 217.59758, z: -2.1097412}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &137651646
 GameObject:
   m_ObjectHideFlags: 0
@@ -2155,10 +2107,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38aa46083053246719c29b7135186074, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  food_tilemap: {fileID: 827719283}
+  food_tilemap: {fileID: 747200725}
   eatenFoodCount: 0
   ClearCanvas: {fileID: 1919884721}
   UICanvas: {fileID: 1322450416}
+  GameOverCanvas: {fileID: 1513558030}
 --- !u!1 &304001653
 GameObject:
   m_ObjectHideFlags: 0
@@ -49626,7 +49579,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &673131488
 Transform:
   m_ObjectHideFlags: 0
@@ -49838,7 +49791,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &747200722
 Transform:
   m_ObjectHideFlags: 0
@@ -50385,7 +50338,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &827719281
 Transform:
   m_ObjectHideFlags: 0
@@ -50457,7 +50410,7 @@ Tilemap:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 827719280}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Tiles:
   - first: {x: -1, y: -29, z: 0}
     second:
@@ -56283,7 +56236,7 @@ MonoBehaviour:
   gameOverUI: {fileID: 1513558030}
   StartUI: {fileID: 1727460848}
   UICanvas: {fileID: 1322450416}
-  food_tilemap: {fileID: 827719283}
+  food_tilemap: {fileID: 747200725}
   inputOptionIsSwitchController_CheckBox: 1
   isGameRunning: 1
 --- !u!212 &955674089
@@ -106084,4 +106037,3 @@ SceneRoots:
   - {fileID: 1071106530}
   - {fileID: 1904449166}
   - {fileID: 1703932399}
-  - {fileID: 128302365}
