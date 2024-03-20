@@ -64,7 +64,7 @@ public class AccelerationFilter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Player.instance.inputOptionIsSwitchController)
+        if (Player.inputOptionIsSwitchController)
         {
             DetectNewStep(JoyConUpdate()); // ここで関数を呼び出す
         }

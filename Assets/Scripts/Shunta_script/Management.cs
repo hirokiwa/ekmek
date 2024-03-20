@@ -45,10 +45,16 @@ public class Management : MonoBehaviour
 
             if (timer >= powerTime)
             {
+                ScoreCountSystem.instance.ResetConsecutiveEatenEnemies();
+                
+                DeleteTile.instance.RunFever.SetActive(false);
+                DeleteTile.instance.isFeverAnimOff();
+                BlinkRunText.instance.KillBlink();
+                
                 timer = 0.0f;
                 pub_timer = 0.0f;
                 powerTime = 0.0f;
-
+                
                 Tracking_oikake.instance.power_o = false;
                 Tracking_pinky.instance.power_p = false;
                 Tracking_gusta.instance.power_g = false;
@@ -78,25 +84,25 @@ public class Management : MonoBehaviour
     public IEnumerator Restart(NavMeshAgent o, NavMeshAgent p, NavMeshAgent g, GameObject gameObject)
     {
 
+        Player.instance.resetDirection();
         Management.instance.stop = true;
-
+        
         yield return new WaitForSeconds(2.0f);
         
-
         Vector3 pos_o = new Vector3(-3.0f, 0f, 0f);
         Vector3 pos_p = new Vector3(3.0f, 0f, 0f);
         Vector3 pos_g = new Vector3(0f, 0f, 0f);
-
+        
         gameObject.transform.position = new Vector2(0f, -16.0f);
         o.Warp(pos_o);
         p.Warp(pos_p);
         g.Warp(pos_g);
-
+        
         ntimer = 0.0f;
         pub_ntimer = 0.0f;
-
+        
         yield return new WaitForSeconds(2.0f);
-
+        
         Management.instance.stop = false;
     }
 

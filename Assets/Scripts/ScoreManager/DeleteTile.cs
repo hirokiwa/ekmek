@@ -6,11 +6,26 @@ using UnityEngine.Tilemaps;
 public class DeleteTile : MonoBehaviour
 {
     public AudioClip PakuSound;
-    public AudioClip BakuSound;
+    // public AudioClip BakuSound;
     public AudioClip PiyoSound;
     AudioSource audioSource1;
-    [SerializeField] private AudioSource audioSource2;
+    // [SerializeField] private AudioSource audioSource2;
     [SerializeField] private AudioSource audioSource3;
+
+    [SerializeField] private ScoreCountSystem scoreSystem;
+
+    [SerializeField] public GameObject RunFever;
+    [SerializeField] private Animator feverAnim;
+
+    public static DeleteTile instance;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
 
     private void Start()
     {
@@ -64,8 +79,7 @@ public class DeleteTile : MonoBehaviour
                 tileCol.enabled = false;
                 tileCol.enabled = true;
 
-                // スコアを更新する処理を追加
-                ScoreCountSystem scoreSystem = FindObjectOfType<ScoreCountSystem>();
+                // スコアを更新する処理を追加x`
                 if(scoreSystem != null)
                 {
                     scoreSystem.AddScore(100); 
@@ -79,8 +93,12 @@ public class DeleteTile : MonoBehaviour
         }
         else if (ot.gameObject.tag == "PowerEsa")
         {
-            audioSource2.PlayOneShot(BakuSound);
             audioSource3.PlayOneShot(PiyoSound);
+            
+            // feverアニメーションの処理
+            RunFever.SetActive(true);
+            isFeverAnimOn();
+            BlinkRunText.instance.RunTextBlink();
 
             Management.instance.power = true;
             Tracking_oikake.instance.power_o = true;
@@ -100,5 +118,15 @@ public class DeleteTile : MonoBehaviour
             Destroy(ot.gameObject);
 
         }
+    }
+
+    public void isFeverAnimOn()
+    {
+        feverAnim.SetBool("isFever", true);
+    }
+    
+    public void isFeverAnimOff()
+    {
+        feverAnim.SetBool("isFever", false);
     }
 }

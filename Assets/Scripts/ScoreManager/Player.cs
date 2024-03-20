@@ -46,10 +46,24 @@ public class Player : MonoBehaviour
     
     public Tilemap food_tilemap;
 
-    public bool inputOptionIsSwitchController;
+    [SerializeField] public bool inputOptionIsSwitchController_CheckBox;
+    public static bool inputOptionIsSwitchController = true;
+
+    public static float speedBoost;
+    // 30秒で0.5を減少させたいので、1秒あたりの減少量は0.5 / 30
+    float decreaseAmountPerSecond = 0.5f / 30f;
+    
+    // public AudioClip howasound;
+    // AudioSource audioSource;
+
+    // Whether the game stage is in play
+    public bool isGameRunning;
+
+    private int RotateDigree;
 
     public void Awake()
     {
+        inputOptionIsSwitchController = inputOptionIsSwitchController_CheckBox;
         if (instance == null)
         {
             instance = this;
@@ -73,6 +87,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(isGameRunning);
         if (!Management.instance.stop)
         {
             if (inputOptionIsSwitchController)
@@ -84,6 +99,7 @@ public class Player : MonoBehaviour
                     directionVector = new Vector2(-1f, 0);
             
                     v = 0;
+                    handleGoLeft();
                 }
                 else if (m_joyconR.GetButtonDown(m_buttons[1]))
                 {
@@ -91,6 +107,7 @@ public class Player : MonoBehaviour
                     directionVector = new Vector2(1f, 0);
             
                     v = 1;
+                    handleGoRight();
                 }
                 else if (m_joyconR.GetButtonDown(m_buttons[3]))
                 {
@@ -98,6 +115,7 @@ public class Player : MonoBehaviour
                     directionVector = new Vector2(0, 1f);
             
                     v = 2;
+                    handleGoUp();
                 }
                 else if (m_joyconR.GetButtonDown(m_buttons[0]))
                 {
@@ -105,13 +123,29 @@ public class Player : MonoBehaviour
                     directionVector = new Vector2(0, -1f);
             
                     v = 3;
+                    handleGoDown();
                 }else
                 {
                     anim.SetBool("isRun", true);
                 }
             
                 rigidbody2D.velocity = new Vector2(AccelerationFilter.instance.last_accel_value, AccelerationFilter.instance.last_accel_value)
-                                       * directionVector * magnificationVec;
+                                       * directionVector * magnificationVec * speedBoost;
+                
+                if (speedBoost > 1.0f)
+                {
+                    // 30秒での減少量を計算
+                    float decreaseAmountPerSecond = (speedBoost - 1.0f) / 30f;
+        
+                    // フレームごとの減少量を計算
+                    speedBoost -= decreaseAmountPerSecond * Time.deltaTime;
+        
+                    // speedBoostが1.0未満にならないようにする
+                    if (speedBoost < 1.0f)
+                    {
+                        speedBoost = 1.0f;
+                    }
+                }
             }
             else
             {
@@ -123,6 +157,7 @@ public class Player : MonoBehaviour
                     anim.SetBool("isRun", true);
                 
                     v = 0;
+                    handleGoLeft();
                 }
                 else if (Input.GetKey("right"))
                 {
@@ -130,6 +165,7 @@ public class Player : MonoBehaviour
                     anim.SetBool("isRun", true);
                 
                     v = 1;
+                    handleGoRight();
                 }
                 else if (Input.GetKey("up"))
                 {
@@ -137,6 +173,7 @@ public class Player : MonoBehaviour
                     anim.SetBool("isRun", true);
                 
                     v = 2;
+                    handleGoUp();
                 }
                 else if (Input.GetKey("down"))
                 {
@@ -144,10 +181,10 @@ public class Player : MonoBehaviour
                     anim.SetBool("isRun", true);
                 
                     v = 3;
+                    handleGoDown();
                 }
                 else
                 {
-                    // rigidbody2D.velocity = new Vector2(0, 0);
                     anim.SetBool("isRun", false);
                 }
                 
@@ -181,27 +218,70 @@ public class Player : MonoBehaviour
 
     void GameOver()
     {
+        gameOverUI.SetActive(true);
         
         ScoreCountSystem.instance.ScoreReset();
         remainCount = 2;
         RemainingNumber.text = "✖️ " + remainCount.ToString();
-        gameOverUI.SetActive(true);
         
-        DOVirtual.DelayedCall(3, () => SceneManager.LoadScene("Main"));
+        setIsGameRunning(false);
+        
+        DOVirtual.DelayedCall(2, () => SceneManager.LoadScene("Start"));
+    }
 
-        
-        //
-        // var sequence = DOTween.Sequence(); //Sequence生成
-        //
-        // sequence.Append(DOVirtual.DelayedCall(2, () => TilemapReseter.instance.ResetTiles()))
-        //     .Join(DOVirtual.DelayedCall(3, () =>Time.timeScale = 0))
-        //     .Join(DOVirtual.DelayedCall(3, () =>this.transform.position = new Vector2(0f, -16.0f)))
-        //     .Join(DOVirtual.DelayedCall(2, () =>food_tilemap.gameObject.SetActive(false)))
-        //     .Join(DOVirtual.DelayedCall(3, () =>food_tilemap.gameObject.SetActive(true)))
-        //     .Join(DOVirtual.DelayedCall(2, () => gameOverUI.SetActive(false)))
-        //     .Join(DOVirtual.DelayedCall(2, () => UICanvas.SetActive(false)))
-        //     .Join(DOVirtual.DelayedCall(2, () => StartUI.SetActive(true)));
-            
+    public void setIsGameRunning(bool input) {
+        if(!isGameRunning & input){
+            DistanceManager.instance.resetDistanceM();
+        }
+        isGameRunning = input;
+    }
+
+    public void handleGoRight(){
+        changeRotateDigree(0);
+    }
+    public void handleGoLeft(){
+        changeRotateDigree(180);
+    }
+    public void handleGoUp(){
+        changeRotateDigree(90);
+    }
+    public void handleGoDown(){
+        changeRotateDigree(270);
+    }
+
+    private void changeRotateDigree(int NewDigree){
+        int CurrentRotateDigree = getRotateDigree();
+        int DifferenceZ = NewDigree - CurrentRotateDigree;
+        bool turnPacman = turnLeftFromUpOrDown(CurrentRotateDigree, NewDigree);
+        int DifferenceX = getDifferenceX(CurrentRotateDigree, NewDigree);
+        transform.Rotate(DifferenceX, 0, turnPacman ? DifferenceZ + 180 : DifferenceZ);
+        setRotateDigree(NewDigree);
+    }
+
+    private bool turnLeftFromUpOrDown(int CurrentDigreeZ, int NewDigreeZ)
+    {
+        bool IsCurrentUpOrDown = CurrentDigreeZ == 90 | CurrentDigreeZ == 270;
+        bool IsNextLeft = NewDigreeZ == 180;
+        return IsCurrentUpOrDown & IsNextLeft;
+    }
+
+    private int getDifferenceX(int CurrentDigreeZ, int NewDigreeZ)
+    {
+        bool IsCurrentLeft = CurrentDigreeZ == 180;
+        bool IsNextLeft = NewDigreeZ == 180;
+        bool TurnX = IsCurrentLeft ^ IsNextLeft;
+        return  TurnX ? 180 : 0;
+    }
+
+    public void resetDirection() {
+        changeRotateDigree(0);
+    }
+
+    private int getRotateDigree(){
+        return RotateDigree;
+    }
+    private void setRotateDigree(int input){
+        RotateDigree = input;
     }
 
 }

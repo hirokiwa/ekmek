@@ -16,6 +16,7 @@ public class InStartManager : MonoBehaviour
     private Joycon.Button?  m_pressedButtonR;
     private JoyconManager joycon;
     private bool xButtonWasPressed;
+    private bool zrButtonWasPressed;
     
     [SerializeField] private GameObject[] objectsToActiveFalse;
     [SerializeField] private GameObject[] objectsToActiveTrue;
@@ -23,8 +24,6 @@ public class InStartManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Time.timeScale = 0;
-        
         var m_joycons = JoyconManager.Instance.j;
         if ( m_joycons == null || m_joycons.Count <= 0 ) return;
 
@@ -37,40 +36,28 @@ public class InStartManager : MonoBehaviour
         // joycon接続時に呼ばれる処理
         if (m_joyconR != null)
         {
-            bool xButtonPressed = m_joyconR.GetButton(Joycon.Button.DPAD_UP);
-
-            // Xボタンが押された瞬間を検出
-            if (xButtonPressed && !xButtonWasPressed)
+            bool ZRButtonPressed = m_joyconR.GetButtonDown(Joycon.Button.SHOULDER_2);
+            
+            // ZRボタンが押された瞬間を検出
+            if (ZRButtonPressed && !zrButtonWasPressed)
             {
-                Time.timeScale = 1; 
-                ToggleObjects();
+                SceneManager.LoadScene("CountDown");
             }
 
-            xButtonWasPressed = xButtonPressed;
-        }
-
-        if (!Player.instance.inputOptionIsSwitchController)
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
+            xButtonWasPressed = ZRButtonPressed;
+            
+            
+            if (m_joyconR.GetButtonDown(m_buttons[3]))
             {
-                Time.timeScale = 1; 
-                ToggleObjects();
+                SceneManager.LoadScene("Tutorial");
             }
         }
-    }
 
-    private void ToggleObjects()
-    {
-        foreach (var obj in objectsToActiveFalse)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            obj.SetActive(false);
+            SceneManager.LoadScene("CountDown");
         }
         
-        foreach (var obj in objectsToActiveTrue)
-        {
-            obj.SetActive(true);
-        }
     }
 
-    
 }

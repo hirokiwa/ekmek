@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class InClearManager : MonoBehaviour
 {
@@ -34,37 +35,35 @@ public class InClearManager : MonoBehaviour
     {
         if (m_joyconR != null)
         {
-            bool xButtonPressed = m_joyconR.GetButton(Joycon.Button.SHOULDER_2);
+            bool ZRButtonPressed = m_joyconR.GetButtonDown(Joycon.Button.SHOULDER_2);
 
             // Xボタンが押された瞬間を検出
-            if (xButtonPressed && !xButtonWasPressed)
+            if (ZRButtonPressed && !xButtonWasPressed)
             {
-                ToggleObjects();
+                SceneManager.LoadScene("Start");
             }
 
-            xButtonWasPressed = xButtonPressed;
+            xButtonWasPressed = ZRButtonPressed;
+            
+            if (m_joyconR.GetButtonDown(m_buttons[3]))
+            {
+                Debug.Log("呼ばれたよ！");
+                RankingManager.instance.RankingCanvasOn();
+            }
         }
         
-        if (!Player.instance.inputOptionIsSwitchController)
+        if (!Player.instance.inputOptionIsSwitchController_CheckBox)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                ToggleObjects();
+                SceneManager.LoadScene("Start");
+            }
+            
+            if (Input.GetKeyDown(KeyCode.X))    
+            {
+                RankingManager.instance.RankingCanvasOn();
             }
         }
     }
-
-    private void ToggleObjects()
-    {
-        foreach (var obj in objectsToActiveFalse)
-        {
-            obj.SetActive(false);
-        }
-        
-        foreach (var obj in objectsToActiveTrue)
-        {
-            obj.SetActive(true);
-        }
-    }
-
+    
 }
